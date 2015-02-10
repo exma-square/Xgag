@@ -1,48 +1,28 @@
 # Xgag
 
-Sails.js starter, collection for most usage library.
-
-We use [NPM-script](https://docs.npmjs.com/misc/scripts) instead of [gulp](http://gulpjs.com/).
+Express.js starter, collection for most usage library.
 
 ## pre-install
 
- * node.js@0.10.26
+ * node.js@0.10.22
  * npm
- * [coffeescript](http://coffeescript.org/)
- * [sass](http://sass-lang.com/install)
- * [compass](http://compass-style.org/install/)
- * [bootstrap](https://github.com/twbs/bootstrap-sass)
- * [sails.js@0.11.0rc](http://sailsjs.org/)
+ * [mongojs](https://github.com/mafintosh/mongojs)
+ * [express@4.11.1rc](http://github.com/strongloop/express/)
 
 ## how to start
 
 ```
 npm start
-open http://localhost:1337
-```
-
-## build project
-
-```
-npm run build
-```
-
-## watch project
-
-```
-npm run watch
+open http://localhost:6000
 ```
 
 ##include
 
  * jade
- * coffeescript support
- * sass config
- * include compass
- * include bootstrap (sass)
+ * bootstrap
 
 #TODO
 
  * bootstrap build in
- * collect sample page for sass, jade, coffee
+ * collect sample page for jade
 
