@@ -3,9 +3,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
 .gag-nav .navbar-nav>li{
   margin: 0 5px;
 }
@@ -15,4 +12,15 @@ a {
 .gag-nav .navbar-nav>li>a.tab:focus{
   /*font-weight: 700;*/
   border-color: #fff;
+}
+.user-info{
+  text-align: center;
+  background: #5bc0de;
+  margin-bottom: 0;
+}
+.mug-shot{
+  margin: 0 auto;
+}
+.user-menu{
+  border-bottom: 1px solid #ddd;
 }

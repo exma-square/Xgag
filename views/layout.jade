@@ -57,7 +57,7 @@ html(lang='en', mode='normal')
                   li
                     a(href='#') Cute
           ul.nav.navbar-nav.navbar-right
-            if !req.session.user
+            if !user
               li
                 a.tab(href='#' data-toggle='modal' data-target='.login-modal') Log in
                 .modal.fade.login-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')

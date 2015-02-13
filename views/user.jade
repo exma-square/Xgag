@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .jumbotron.user-info
+    .container
+      .mug-shot
+        img.img-circle(src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA0Njg3NSIgeT0iNzAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4xNDB4MTQwPC90ZXh0PjwvZz48L3N2Zz4=")
+      h3= user.name
+      span My Funny Collection
+  .user-menu
+    .container
+      ul.nav.nav-pills
+        li
+          a(href='#') OVERVIEW
+        li
+          a(href='#') POSTS
+        li
+          a(href='#') UPVOTES
+        li
+          a(href='#') COMMENTS
+
+  .container
+    .row
+      .col-md-8
+        .jumbotron
+          h1 Hello, world!
+          p This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.
+
+      .col-md-4.sidebar
+        .sidebar-offcanvas
+          .list-group
+            a.list-group-item.active(href='#') Link
+            a.list-group-item(href='#') Link
+            a.list-group-item(href='#') Link
+            a.list-group-item(href='#') Link
+            a.list-group-item(href='#') Link
+            a.list-group-item(href='#') Link
+            a.list-group-item(href='#') Link
+            a.list-group-item(href='#') Link

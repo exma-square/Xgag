@@ -1,15 +1,15 @@
 extends layout
 
 block content
-  if req.session.user
+  if user
     .list-group-item.list-group-item-warning.user-info
-      .container Hello #{req.session.user.name} Welcome to #{title}
+      .container Hello #{user.name} Welcome to #{title}
 
   .container
     .row
       h1= title
-      if req.session.user
-        h1= req.session.user.name
+      if user
+        h1= user.name
       else
         h1 沒有登入
       p Welcome to #{title}
