@@ -12,6 +12,12 @@ html(lang='en', mode='normal')
     link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap-theme.min.css')
     //- Custom CSS
     link(rel='stylesheet' href='/stylesheets/main.css')
+
+    //- jQuery
+    script(type='text/javascript' src='/jquery/dist/jquery.min.js')
+    //- Bootstrap Core JavaScript
+    script(type='text/javascript' src='/bootstrap/dist/js/bootstrap.min.js')
+
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     // WARNING: Respond.js doesn't work if you view the page via file://
     //[if lt IE 9]>
@@ -51,61 +57,63 @@ html(lang='en', mode='normal')
                   li
                     a(href='#') Cute
           ul.nav.navbar-nav.navbar-right
-            li
-              a.tab(href='#' data-toggle='modal' data-target='.login-modal') Log in
-              .modal.fade.login-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                .modal-dialog
-                  form.modal-content
-                    .modal-header
-                      button.close(type='button' data-dismiss='modal' aria-label='Close')
-                        span(aria-hidden='true') &times;
-                      h2.modal-title#exampleModalLabel Login
-                      span.text-info Log in with your email address
-                    .modal-body
-                      .form-group.form-group-lg
-                        label.control-label(for='login-email-name') Email
-                        input.form-control#login-email-name(type='text' name='username')
-                      .form-group.form-group-lg
-                        label.control-label(for='login-password') Password
-                        input.form-control#login-password(type='text' name='password')
-                    .modal-footer
-                      button.btn.btn-default(type='button' data-dismiss='modal') Close
-                      button.btn.btn-primary(type='button') Log in
-            li
-              a.tab(href='#' data-toggle='modal' data-target='.signup-modal') Sign up
-              .modal.fade.signup-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                .modal-dialog
-                  form.modal-content
-                    .modal-header
-                      button.close(type='button' data-dismiss='modal' aria-label='Close')
-                        span(aria-hidden='true') &times;
-                      h2.modal-title#exampleModalLabel Become a member
-                    .modal-body
-                      .form-group.form-group-lg
-                        label.control-label(for='signup-full-name') Full Name
-                        input.form-control#signup-full-name(type='text' name='fullName')
-                      .form-group.form-group-lg
-                        label.control-label(for='signup-email') Email Address
-                        input.form-control#signup-email(type='text' name='username')
-                      .form-group.form-group-lg
-                        label.control-label(for='signup-password') Password
-                        input.form-control#signup-password(type='text' name='password')
-                    .modal-footer
-                      button.btn.btn-default(type='button' data-dismiss='modal') Close
-                      button.btn.btn-primary(type='button') Sign up
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                i.glyphicon.glyphicon-user
-                | Me 
-                span.caret
-                ul.dropdown-menu(role='menu')
-                  li
-                    a(href='#') My Profile
-                  li
-                    a(href='#') Settings
-                  li.divider
-                  li
-                    a(href='#') Logout
+            if !req.session.user
+              li
+                a.tab(href='#' data-toggle='modal' data-target='.login-modal') Log in
+                .modal.fade.login-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                  .modal-dialog
+                    form.modal-content(action="/login" method="post")
+                      .modal-header
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                          span(aria-hidden='true') &times;
+                        h2.modal-title#exampleModalLabel Login
+                        span.text-info Log in with your email address
+                      .modal-body
+                        .form-group.form-group-lg
+                          label.control-label(for='login-email-name') Email
+                          input.form-control#login-email-name(type='text' name='email')
+                        .form-group.form-group-lg
+                          label.control-label(for='login-password') Password
+                          input.form-control#login-password(type='text' name='password')
+                      .modal-footer
+                        button.btn.btn-default(type='button' data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') Log in
+              li
+                a.tab(href='#' data-toggle='modal' data-target='.signup-modal') Sign up
+                .modal.fade.signup-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                  .modal-dialog
+                    form.modal-content(action="/create" method="post")
+                      .modal-header
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                          span(aria-hidden='true') &times;
+                        h2.modal-title#exampleModalLabel Become a member
+                      .modal-body
+                        .form-group.form-group-lg
+                          label.control-label(for='signup-full-name') Full Name
+                          input.form-control#signup-full-name(type='text' name='name')
+                        .form-group.form-group-lg
+                          label.control-label(for='signup-email') Email Address
+                          input.form-control#signup-email(type='text' name='email')
+                        .form-group.form-group-lg
+                          label.control-label(for='signup-password') Password
+                          input.form-control#signup-password(type='text' name='password')
+                      .modal-footer
+                        button.btn.btn-default(type='button' data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') Sign up
+            else
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                  i.glyphicon.glyphicon-user
+                  | Me 
+                  span.caret
+                  ul.dropdown-menu(role='menu')
+                    li
+                      a(href='#') My Profile
+                    li
+                      a(href='#') Settings
+                    li.divider
+                    li
+                      a(href='/logout') Logout
 
 
     block content
@@ -116,7 +124,3 @@ html(lang='en', mode='normal')
         .row
           .col-lg-12
             p Xgag &copy; 2015
-  //- jQuery
-  script(type='text/javascript' src='/jquery/dist/jquery.min.js')
-  //- Bootstrap Core JavaScript
-  script(type='text/javascript' src='/bootstrap/dist/js/bootstrap.min.js')
