@@ -24,7 +24,8 @@
     "mongojs": "^0.18.1",
     "cookie-session": "^1.1.0",
     "connect-flash": "^0.1.1",
-    "async": "^0.9.0"
+    "async": "^0.9.0",
+    "connect-multiparty": "~1.2.5"
   },
   "main": "app.js",
   "repository": {

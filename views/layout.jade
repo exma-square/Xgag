@@ -10,14 +10,17 @@ html(lang='en', mode='normal')
     //- Bootstrap Core CSS
     link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap-theme.min.css')
-    //- Custom CSS
+    //- Custom CSS 
     link(rel='stylesheet' href='/stylesheets/main.css')
-
+    
     //- jQuery
     script(type='text/javascript' src='/jquery/dist/jquery.min.js')
+    //- script(type='text/javascript' src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
     //- Bootstrap Core JavaScript
     script(type='text/javascript' src='/bootstrap/dist/js/bootstrap.min.js')
-
+    //- Custom JS
+    script(type='text/javascript' src='/javascripts/main.js')
+    
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     // WARNING: Respond.js doesn't work if you view the page via file://
     //[if lt IE 9]>
@@ -60,13 +63,13 @@ html(lang='en', mode='normal')
             if !user
               li
                 a.tab(href='#' data-toggle='modal' data-target='.login-modal') Log in
-                .modal.fade.login-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                .modal.fade.login-modal(tabindex='-1' role='dialog' aria-labelledby='dialog-login' aria-hidden='true')
                   .modal-dialog
                     form.modal-content(action="/login" method="post")
                       .modal-header
                         button.close(type='button' data-dismiss='modal' aria-label='Close')
                           span(aria-hidden='true') &times;
-                        h2.modal-title#exampleModalLabel Login
+                        h2.modal-title#dialog-login Login
                         span.text-info Log in with your email address
                       .modal-body
                         .form-group.form-group-lg
@@ -80,13 +83,13 @@ html(lang='en', mode='normal')
                         button.btn.btn-primary(type='submit') Log in
               li
                 a.tab(href='#' data-toggle='modal' data-target='.signup-modal') Sign up
-                .modal.fade.signup-modal(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                .modal.fade.signup-modal(tabindex='-1' role='dialog' aria-labelledby='dialog-signup' aria-hidden='true')
                   .modal-dialog
                     form.modal-content(action="/create" method="post")
                       .modal-header
                         button.close(type='button' data-dismiss='modal' aria-label='Close')
                           span(aria-hidden='true') &times;
-                        h2.modal-title#exampleModalLabel Become a member
+                        h2.modal-title#dialog-signup Become a member
                       .modal-body
                         .form-group.form-group-lg
                           label.control-label(for='signup-full-name') Full Name
@@ -101,19 +104,40 @@ html(lang='en', mode='normal')
                         button.btn.btn-default(type='button' data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') Sign up
             else
-              li.dropdown
+              li.dropdown.user-setup-btn
                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
                   i.glyphicon.glyphicon-user
                   | Me 
                   span.caret
                   ul.dropdown-menu(role='menu')
                     li
-                      a(href='#') My Profile
+                      a(href='/users') My Profile
                     li
                       a(href='#') Settings
                     li.divider
                     li
                       a(href='/logout') Logout
+                button.btn.btn-success.tab(href='#' data-toggle='modal' data-target='.upload-modal') Upload
+                .modal.fade.upload-modal(tabindex='-1' role='dialog' aria-labelledby='dialog-upload' aria-hidden='true')
+                  .modal-dialog
+                    form.modal-content#frmUploadFile(enctype='multipart/form-data' action='javascript:;' method='post' role = "form")
+                      .modal-header
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                          span(aria-hidden='true') &times;
+                        h2.modal-title#dialog-upload Post a fun
+                        p Upload funny pictures, paste pictures URL, accepting GIF/JPG/PNG (Max size: 3MB)
+                      .modal-body
+                        .form-group.form-group-lg
+                          label.control-label(for='user-post-image') File input
+                          input.form-control#user-post-image(type='file' name='image')
+                        .form-group
+                          img#imgShow(style="width:100%;")
+                        .form-group
+                          label.control-label(for='user-post-text') text
+                          textarea.form-control#user-post-text(rows="3" name='text')
+                      .modal-footer
+                        button.btn.btn-default(type='button' data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit' onClick='uploadFile()') Upload
 
 
     block content

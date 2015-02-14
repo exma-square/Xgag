@@ -24,3 +24,6 @@ body {
 .user-menu{
   border-bottom: 1px solid #ddd;
 }
+.user-setup-btn > .dropdown-toggle{
+  display: inline-block;
+}

@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('cookie-session');
+var multipart = require('connect-multiparty');
+var fs = require('fs');
 
 var app = express();
 
@@ -41,6 +43,15 @@ app.post('/create', controllers.users.create);
 app.post('/login', controllers.users.login);
 // 登出
 app.get('/logout', controllers.users.logout);
+// app.post('/upload', multipart(), controllers.users.upload)
+app.post('/upload', multipart(), function(req, res){
+  var filename = req.files.image.originalFilename || path.basename(req.files.image.ws.path);
+  var targetPath = path.dirname(__filename) + '/public/' + filename;
+  //copy file
+  fs.createReadStream(req.files.image.ws.path).pipe(fs.createWriteStream(targetPath));
+  //return file url
+  res.json({code: 200, msg: {url: 'http://' + req.headers.host + '/' + filename}});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
