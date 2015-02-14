@@ -13,7 +13,7 @@ Express.js starter, collection for most usage library.
 
 ```
 npm start
-open http://localhost:6000
+open http://localhost:7000
 ```
 
 ##include

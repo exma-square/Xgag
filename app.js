@@ -73,5 +73,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+process.env.PORT = 7000;
 
 module.exports = app;
