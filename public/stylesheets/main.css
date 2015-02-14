@@ -13,7 +13,7 @@ body {
   /*font-weight: 700;*/
   border-color: #fff;
 }
-.user-info{
+.jumbotron.user-info{
   text-align: center;
   background: #5bc0de;
   margin-bottom: 0;
