@@ -3,5 +3,5 @@ module.exports = {
   login: require('./login'),
   logout: require('./logout'),
   upload: require('./upload'),
-  overview: require('./overview')
+  overview: require('./overview'),
 };
