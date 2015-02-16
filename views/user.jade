@@ -24,6 +24,14 @@ block content
       .col-md-9
         .jumbotron
           h1= title
+        each val, index in posts
+          .post.jumbotron
+            .post-header
+              h3.item-title
+                a.badge-evt.badge-track(href='')= val.title
+            .post-body
+              a.badge-evt.badge-track.badge-track-no-follow(href="#" style="min-height:360px;")
+                img.badge-item-img(src= '/images/users/' + val.image)
 
       .col-md-3.sidebar
         .sidebar-offcanvas
