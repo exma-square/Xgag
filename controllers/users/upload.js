@@ -2,16 +2,26 @@ var fs = require('fs');
 var path = require('path');
 var rootPath = require('app-root-path').path;
 var async = require('async');
+var mkdirp = require('mkdirp');
 var models = require('../../models');
 var _ = require('lodash');
 
 module.exports = function (req, res){
-  var date = new Date()
+  var date = new Date();
+  
   async.waterfall([
-    function getImage(cb){
+    function checkFolder(cb){
+      var folderName = rootPath + '/public/images/users/';
+      mkdirp(folderName, function (err) {
+        if (err) return cb(error);
+        cb(null, folderName);
+      });
+    },
+
+    function createFile(folderName, cb) {
       var imageFile = req.files.image.originalFilename
       var filename = req.session.user.name + '_' + date.getTime() + '.' + imageFile.split('.').pop();
-      var targetPath = rootPath + '/public/images/users/' + filename;
+      var targetPath = folderName + filename;
       fs.createReadStream(req.files.image.ws.path).pipe(fs.createWriteStream(targetPath));
       cb(null, filename)
     },
