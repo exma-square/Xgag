@@ -40,3 +40,6 @@ body {
 .post.jumbotron{
   text-align: center;
 }
+.post .item-title{
+  margin-top: 0;
+}

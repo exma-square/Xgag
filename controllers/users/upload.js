@@ -51,6 +51,6 @@ module.exports = function (req, res){
     }
     req.session.post = _.pick(newPost, 'title', 'image', 'name');
 
-    res.redirect('/users/freshPost');
+    res.redirect('/');
   });
 };
