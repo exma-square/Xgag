@@ -79,5 +79,7 @@ app.use(function(err, req, res, next) {
 });
 
 process.env.PORT = process.env.PORT || 7000;
+console.log("env:");
+console.log(process.env.NODE_ENV)
 
 module.exports = app;
