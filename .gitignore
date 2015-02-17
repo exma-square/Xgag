@@ -3,3 +3,7 @@ bower_components/
 node_modules
 .tmp
 .DS_Store
+public/images/users/*.png
+public/images/users/*.jpg
+public/images/users/*.jepg
+public/images/users/*.gif
