@@ -79,7 +79,7 @@ html(lang='en', mode='normal')
                           input.form-control#login-email-name(type='text' name='email')
                         .form-group.form-group-lg
                           label.control-label(for='login-password') Password
-                          input.form-control#login-password(type='text' name='password')
+                          input.form-control#login-password(type='password' name='password')
                       .modal-footer
                         button.btn.btn-default(type='button' data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') Log in
@@ -101,7 +101,7 @@ html(lang='en', mode='normal')
                           input.form-control#signup-email(type='text' name='email')
                         .form-group.form-group-lg
                           label.control-label(for='signup-password') Password
-                          input.form-control#signup-password(type='text' name='password')
+                          input.form-control#signup-password(type='password' name='password')
                       .modal-footer
                         button.btn.btn-default(type='button' data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') Sign up
@@ -141,7 +141,13 @@ html(lang='en', mode='normal')
                         button.btn.btn-default(type='button' data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') Upload
 
-
+    - if (flash.length > 0)
+      - for message in flash
+        .alert.alert-warning.alert-dismissible.fade.in(role='alert')
+          button.close(type='button', data-dismiss='alert', aria-label='Close')
+            span(aria-hidden='true') ×
+          strong 登入失敗 
+          =message.message
     block content
     
     .container

@@ -38,7 +38,7 @@ module.exports = function (req, res){
     }
 
     if(!user){
-      console.log('找不到帳號，請註冊');
+      req.flash('warn', '找不到帳號，請註冊');
       return res.redirect('/');
     }
 
