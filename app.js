@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var session = require('cookie-session');
 var multipart = require('connect-multiparty');
 var fs = require('fs');
+var stylus = require('stylus');
+var nib = require('nib');
 
 var app = express();
 
@@ -27,6 +29,21 @@ app.use(session({
   cookie: {
     maxAge: 1000 * 60
   }
+}));
+app.use(stylus.middleware({
+  src: __dirname + '/public/stylus', // .styl files are located in `views/stylesheets`
+  dest: __dirname + '/public/stylesheets', // .styl resources are compiled `/stylesheets/*.css`
+
+  compile : function(str, path) {
+    return stylus(str).set('filename', path).set('compress', true).use(nib());
+  }
+  // compile: function (str, path, fn) { // optional, but recommended
+  //   stylus(str)
+  //   .set('filename', path)
+  //   .set('compress', true)
+  //   // .use(nib())
+  //   .render(fn);
+  // }
 }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(__dirname + '/bower_components'));
