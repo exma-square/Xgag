@@ -10,6 +10,8 @@ var multipart = require('connect-multiparty');
 var fs = require('fs');
 var stylus = require('stylus');
 var nib = require('nib');
+var flash = require('flash');
+
 
 var app = express();
 
@@ -30,6 +32,7 @@ app.use(session({
     maxAge: 1000 * 60
   }
 }));
+app.use(flash());
 app.use(stylus.middleware({
   src: __dirname + '/public/stylus', // .styl files are located in `views/stylesheets`
   dest: __dirname + '/public/stylesheets', // .styl resources are compiled `/stylesheets/*.css`
