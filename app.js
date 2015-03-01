@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('cookie-session');
+// var session = require('express-session')
 var multipart = require('connect-multiparty');
 var fs = require('fs');
 var stylus = require('stylus');
