@@ -67,6 +67,8 @@ app.get('/logout', controllers.users.logout);
 app.post('/upload', multipart(), controllers.users.upload);
 // 貼文
 app.get('/getPosts', controllers.posts.getPosts);
+// 新聞貼文
+app.get('/news/urlPreview', controllers.news.urlPreview);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
