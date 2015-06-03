@@ -13,11 +13,12 @@ module.exports = function (req, res){
       var content = $(".story");
       var newspic = content.find('img').attr('src')
       newsINFO.push({
-        title: $("h2.title").text(),
-        newspic: newspic,
+        title: $('meta[property="og:title"]').attr('content'),
+        newspic: $('meta[property="og:image"]').attr('content'),
         time: time,
-        content: content.find('p').toString(),
-        url: newsURL
+        content: $('meta[name="description"]').attr('content'),
+        url: $('meta[property="og:url"]').attr('content'),
+        site_name: $('meta[property="og:site_name"]').attr('content')
       });
       res.json(newsINFO);
     } else {
