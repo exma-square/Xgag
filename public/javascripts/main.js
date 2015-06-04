@@ -11,8 +11,10 @@ $(function(){
   });
 
   $("#user-post-url").focusout(function(){
-    $.get( "/news/urlPreview", function( data ) {
-      $.tmpl( "<h3><b>${title}</b></h3><img src='${newspic}'/>", data ).appendTo( "#news-prewiew" );
+    var url = $(this).val();
+    $.get( "/news/urlPreview", {url:url}, function( data ) {
+      var string = "<img style='width:100%' src='${newspic}'/><h4>${title}</h4><p>${content}</p>";
+      $("#news-prewiew").html($.tmpl( string, data ));
     });
   });
 });

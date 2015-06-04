@@ -1,7 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 module.exports = function (req, res){
-  var newsURL = 'http://www.ettoday.net/news/20150529/513504.htm';
+  var newsURL = req.query.url
   var newsINFO = [];
   request({
     url: newsURL
