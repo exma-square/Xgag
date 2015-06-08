@@ -137,11 +137,14 @@ html(lang='en', mode='normal')
             button.close(type='button' data-dismiss='modal' aria-label='Close')
               span(aria-hidden='true') &times;
             h2.modal-title#dialog-upload Post a fun
-            p Upload funny pictures, paste pictures URL, accepting GIF/JPG/PNG (Max size: 3MB)
+            p Upload funny news, paste pictures URL
           .modal-body
             .form-group.form-group-lg
-              label.control-label(for='user-post-image') Url :
-              input.form-control#user-post-url(type='url' name='image')
+              label.control-label(for='user-post-title') Title :
+              input.form-control#user-post-title(type='text' name='user-post-title')
+            .form-group.form-group-lg
+              label.control-label(for='user-post-url') Url :
+              input.form-control#user-post-url(type='url' name='user-post-url')
             .form-group
               div#news-prewiew(style="border: 1px solid #000;padding:5px;")
                 h3.news-title

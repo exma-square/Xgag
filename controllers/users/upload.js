@@ -1,57 +1,55 @@
-var fs = require('fs');
-var path = require('path');
-var rootPath = require('app-root-path').path;
+// var fs = require('fs');
+// var path = require('path');
+// var rootPath = require('app-root-path').path;
 var async = require('async');
-var mkdirp = require('mkdirp');
+// var mkdirp = require('mkdirp');
 var models = require('../../models');
 var _ = require('lodash');
+var request = require("request");
+var cheerio = require("cheerio");
 
 module.exports = function (req, res){
   var date = new Date();
   
   async.waterfall([
-    function checkFolder(cb){
-      var folderName = rootPath + '/public/images/users/';
-      mkdirp(folderName, function (err) {
-        if (err) return cb(error);
-        cb(null, folderName);
+
+    function getUrl(cb){
+      var newsINFO = null,
+        newsURL = req.body['user-post-url'],
+        postTitle = req.body['user-post-title'];
+      request({
+        url: newsURL
+      },
+      function (error, response, html){
+        if(!error && response.statusCode == 200){
+          var $ = cheerio.load(html);
+          var time = $(".news-time").text();
+          var content = $(".story");
+          var newspic = content.find('img').attr('src')
+          newsINFO = {
+            name: req.session.user.name,
+            title: postTitle,
+            newsTitle: $('meta[property="og:title"]').attr('content'),
+            image: $('meta[property="og:image"]').attr('content'),
+            create_date: date,
+            content: $('meta[name="description"]').attr('content'),
+            url: $('meta[property="og:url"]').attr('content'),
+            site_name: $('meta[property="og:site_name"]').attr('content')
+          };
+          return cb(null, newsINFO);
+        } else {
+          res.statusCode = 404;
+          var error = {
+            status: 'error',
+            message: 'fail to request'
+          }
+          return cb(new Error(error));
+        }
       });
     },
 
-    function createFile(folderName, cb) {
-      var imageFile = req.files.image.originalFilename
-      var filename = req.session.user.name + '_' + date.getTime() + '.' + imageFile.split('.').pop();
-      var targetPath = folderName + filename;
-      fs.createReadStream(req.files.image.ws.path).pipe(fs.createWriteStream(targetPath));
-      cb(null, filename)
-    },
-
-    function pickFields(filename, cb){
-      var options = _.pick(req.body, 'title');
-      options['image'] = filename;
-      options['name'] = req.session.user.name;
-      cb(null, options);
-    },
-
-    function validateData(options, cb){
-      if(!options.title){
-        return cb(new Error('沒有 title'));
-      }
-
-      if(!options.image){
-        return cb(new Error('沒有 image'));
-      }
-
-      if(!options.name){
-        return cb(new Error('沒有 name'));
-      }
-
-      cb(null, options);
-    },
-
-    function insert(options, cb){
-      options['create_date'] = date
-      models.posts.insert(options, cb);
+    function pickFields(newsINFO, cb){
+      models.posts.insert(newsINFO, cb);
     }
   ], function (err, newPost){
 

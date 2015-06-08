@@ -41,13 +41,6 @@ app.use(stylus.middleware({
   compile : function(str, path) {
     return stylus(str).set('filename', path).set('compress', true).use(nib());
   }
-  // compile: function (str, path, fn) { // optional, but recommended
-  //   stylus(str)
-  //   .set('filename', path)
-  //   .set('compress', true)
-  //   // .use(nib())
-  //   .render(fn);
-  // }
 }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(__dirname + '/bower_components'));
@@ -78,9 +71,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -92,7 +82,6 @@ if (app.get('env') === 'development') {
 }
 
 // production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
