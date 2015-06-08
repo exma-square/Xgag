@@ -15,8 +15,8 @@ module.exports = function (req, res){
 
     function getUrl(cb){
       var newsINFO = null,
-        newsURL = req.body['user-post-url'],
-        postTitle = req.body['user-post-title'];
+        newsURL = req.body['user-post-url'];
+        
       request({
         url: newsURL
       },
@@ -25,7 +25,8 @@ module.exports = function (req, res){
           var $ = cheerio.load(html);
           var time = $(".news-time").text();
           var content = $(".story");
-          var newspic = content.find('img').attr('src')
+          var newspic = content.find('img').attr('src');
+          var postTitle = req.body['user-post-title']?req.body['user-post-title']:$('meta[property="og:title"]').attr('content');
           newsINFO = {
             name: req.session.user.name,
             title: postTitle,
