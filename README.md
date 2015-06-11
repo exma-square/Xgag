@@ -26,3 +26,32 @@ open http://localhost:7000
  * bootstrap build in
  * collect sample page for jade
 
+#schema
+
+```
+user:{
+  name:
+  password:
+  email:
+}
+post:{
+  voteId:
+  userId:
+  commentId:
+  title:
+  url:
+  description:
+  img:
+  site_name:
+}
+vote:{
+  userId:
+  postId:
+  good:
+  bad:
+}
+comment:{
+  userId:
+  message:
+}
+```
