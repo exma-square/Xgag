@@ -24,7 +24,7 @@ module.exports = function (req, res){
         if(!error && response.statusCode == 200){
           var $ = cheerio.load(html);
           var time = $(".news-time").text();
-          var content = $(".story");
+          var content = req.body['user-post-description']?req.body['user-post-description']:$('meta[name="description"]').attr('content');
           var newspic = content.find('img').attr('src');
           var postTitle = req.body['user-post-title']?req.body['user-post-title']:$('meta[property="og:title"]').attr('content');
           newsINFO = {
@@ -33,7 +33,7 @@ module.exports = function (req, res){
             newsTitle: $('meta[property="og:title"]').attr('content'),
             image: $('meta[property="og:image"]').attr('content'),
             create_date: date,
-            content: $('meta[name="description"]').attr('content'),
+            content: content,
             url: $('meta[property="og:url"]').attr('content'),
             site_name: $('meta[property="og:site_name"]').attr('content')
           };
