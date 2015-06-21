@@ -25,7 +25,6 @@ module.exports = function (req, res){
           var $ = cheerio.load(html);
           var time = $(".news-time").text();
           var content = req.body['user-post-description']?req.body['user-post-description']:$('meta[name="description"]').attr('content');
-          var newspic = content.find('img').attr('src');
           var postTitle = req.body['user-post-title']?req.body['user-post-title']:$('meta[property="og:title"]').attr('content');
           newsINFO = {
             name: req.session.user.name,

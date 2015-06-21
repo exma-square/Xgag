@@ -10,7 +10,7 @@ $(function(){
   $("#user-post-url").focusout(function(){
     var url = $(this).val();
     $.get( "/news/urlPreview", {url:url}, function( data ) {
-      var string = "<h4>${title}</h4><p>${content}</p><img class='img-rounded' style='width:100%' src='${newspic}'/>";
+      var string = "<h3 class='preview-title'>${title}</h3><p>${content}</p><img class='img-rounded' style='width:100%' src='${newspic}'/>";
       $("#news-prewiew").html($.tmpl( string, data ));
     });
   });
