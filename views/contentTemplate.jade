@@ -1,5 +1,5 @@
 script#contentTmpl(type="text/x-jquery-tmpl")
-  .post.jumbotron
+  .post.jumbotron(id="${_id}")
     .post-header
       .item-title
         a.badge-evt.badge-track(href="#") ${title}
@@ -7,10 +7,16 @@ script#contentTmpl(type="text/x-jquery-tmpl")
       a.badge-evt.badge-track.badge-track-no-follow(href="#", style="min-height:360px;")
         img.badge-item-img(src='${image}')
     .post-footer
-      .post-info ${like.length} 讚 ·  ${dislike.length}  幹  · ${comment.length} 評論
-      button.btn.btn-default.btn-lg
+      .post-info 
+        span.like ${like.length}
+        | 讚 ·  
+        span.dislike ${dislike.length} 
+        | 幹  · 
+        span.comment ${comment.length} 
+        | 評論
+      a(href="/like/add/${_id}").btn.btn-default.btn-lg.motion
         i.glyphicon.glyphicon-arrow-up
-      button.btn.btn-default.btn-lg
+      a(href="/dislike/add/${_id}").btn.btn-default.btn-lg.motion
         i.glyphicon.glyphicon-arrow-down
       button.btn.btn-default.btn-lg
         i.glyphicon.glyphicon-edit
