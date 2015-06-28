@@ -48,7 +48,12 @@ module.exports = function (req, res){
         }
       });
     },
-
+    function addDefault(newsINFO, cb){
+      newsINFO.like = [];
+      newsINFO.dislike = [];
+      newsINFO.comment = [];
+      return cb(null, newsINFO);
+    },
     function pickFields(newsINFO, cb){
       models.posts.insert(newsINFO, cb);
     }
@@ -58,6 +63,7 @@ module.exports = function (req, res){
       console.error(err);
       return res.send(err);
     }
+    
     req.session.post = _.pick(newPost, 'title', 'image', 'name');
 
     res.redirect('/');
