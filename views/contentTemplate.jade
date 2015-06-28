@@ -8,15 +8,26 @@ script#contentTmpl(type="text/x-jquery-tmpl")
         img.badge-item-img(src='${image}')
     .post-footer
       .post-info 
-        span.like ${like.length}
-        | 讚 ·  
-        span.dislike ${dislike.length} 
-        | 幹  · 
+        
         span.comment ${comment.length} 
         | 評論
-      a(href="/like/add/${_id}").btn.btn-default.btn-lg.motion
-        i.glyphicon.glyphicon-arrow-up
-      a(href="/dislike/add/${_id}").btn.btn-default.btn-lg.motion
-        i.glyphicon.glyphicon-arrow-down
-      button.btn.btn-default.btn-lg
-        i.glyphicon.glyphicon-edit
+      div.media
+        div.pull-left
+          a(href="/like/add/${_id}").btn.btn-default.btn-lg.motion.btn-primary
+            span.like ${like.length}
+            | 讚 ·  
+            i.glyphicon.glyphicon-hand-up
+      
+        div.pull-right
+          a(href="/dislike/add/${_id}").btn.btn-default.btn-lg.motion.btn-danger
+            span.dislike ${dislike.length}
+            | 幹  ·       
+            i.glyphicon.glyphicon-thumbs-down
+      
+      div.progress
+        div.progress-like.progress-bar.progress-bar-info(style="width: ${percent.like}%")
+        div.progress-dislike.progress-bar.progress-bar-danger(style="width: ${percent.dislike}%")
+      div.comment
+        button.btn.btn-default.btn-lg
+          i.glyphicon.glyphicon-edit
+      
