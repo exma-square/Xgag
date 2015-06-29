@@ -2,6 +2,9 @@ $(function(){
 
   $.get( "/getPosts", function( data ) {
     $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
+    $('.comment-btn').on('click', function(){
+      $(this).parent().parent().find('textarea').focus();
+    });
     $("img").error(function () {
       $(this).attr("src", "/images/error/error.png");
     });
@@ -14,4 +17,5 @@ $(function(){
       $("#news-prewiew").html($.tmpl( string, data ));
     });
   });
+  
 });
