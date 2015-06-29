@@ -1,7 +1,21 @@
 $(function(){
 
   $.get( "/getPosts", function( data ) {
-    $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
+    console.log(data)
+    $("#contentTmpl").tmpl(data.posts,{ 
+          myValue: "somevalue", 
+          count: function() {
+            data = this.data.messages
+            console.log(this.data.messages)
+            if(data)
+              return Object.keys(data).length;
+            return 0;
+          },
+          message: function() {
+            $("#contentTmplComment").tmpl(this.data.messages).appendTo(".aaa");
+            return true;
+          }
+      }).appendTo(".post-clump");
     $('.comment-btn').on('click', function(){
       $(this).parent().parent().find('textarea').focus();
     });

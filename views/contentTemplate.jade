@@ -19,7 +19,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
         i.fa.fa-thumbs-down
       button.btn.btn-default.btn-lg.comment-btn
         i.fa.fa-comment-o
-    p.comment-info.bg-danger 共 0 則回應
+    p.comment-info.bg-danger 共 ${$item.count} 則回應
     .comment-box
       .comment-body
         span.name 金城武
@@ -52,3 +52,12 @@ script#contentTmpl(type="text/x-jquery-tmpl")
               i.fa.fa-volume-up
             .col-sm-11
               textarea.form-control(id='${_id}' rows='1' placeholder="comment...")
+script#contentTmplComment(type="text/x-jquery-tmpl")
+  .comment-box
+    .comment-body
+      span.name 金城武
+      span.date 2015年6月29日晚上7點21
+      .clearfix
+      hr
+      p.message
+        |有時候沒經驗想法真的會差很多
