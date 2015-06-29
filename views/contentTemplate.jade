@@ -3,8 +3,6 @@ script#contentTmpl(type="text/x-jquery-tmpl")
     .post-header
       .item-title
         h3.badge-evt.badge-track(href="#") ${title}
-      //- .item-description
-        //- a.badge-evt.badge-track(href="#") ${content}
     .post-body
       a.badge-evt.badge-track.badge-track-no-follow(href="#")
         .col-md-4
@@ -14,10 +12,42 @@ script#contentTmpl(type="text/x-jquery-tmpl")
           p.text-muted.text-left.badge-evt.badge-track(href="#") ${content}...
       .clearfix
     .post-footer
-      .post-info 56% 讚 · 10 評論
+      //- .post-info 56% 讚 · 10 評論
       button.btn.btn-default.btn-lg
-        i.glyphicon.glyphicon-arrow-up
+        i.fa.fa-thumbs-o-up
       button.btn.btn-default.btn-lg
-        i.glyphicon.glyphicon-arrow-down
+        i.fa.fa-thumbs-down
       button.btn.btn-default.btn-lg
-        i.glyphicon.glyphicon-edit
+        i.fa.fa-comment-o
+    p.comment-info.bg-danger 共 0 則回應
+    .comment-box
+      .comment-body
+        span.name 金城武
+        span.date 2015年6月29日晚上7點21
+        .clearfix
+        hr
+        p.message
+          |有時候沒經驗想法真的會差很多
+    .comment-box
+      .comment-body
+        span.name 金城武
+        span.date 2015年6月29日晚上7點21
+        .clearfix
+        hr
+        p.message
+          |有時候沒經驗想法真的會差很多
+    .comment-box
+      .comment-body
+        span.name 金城武
+        span.date 2015年6月29日晚上7點21
+        .clearfix
+        hr
+        p.message
+          |有時候沒經驗想法真的會差很多
+    if user
+      form.form-horizontal.comment-footer
+        .form-group
+          label.col-sm-1.control-label(for="input-comment") 
+            i.glyphicon.glyphicon-user
+          .col-sm-11
+            textarea#input-comment.form-control(rows='1' placeholder="comment...")
