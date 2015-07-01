@@ -2,7 +2,6 @@ var models = require('../../models');
 
 module.exports = function (req, res){
 
-
   var countPercent = function(data) {
     var dislike = data.dislike.length;
     var like = data.like.length;
@@ -23,6 +22,7 @@ module.exports = function (req, res){
   };
 
   models.posts.find().sort({create_date:-1}, function(err, posts){
+
     if(err){
       console.error(err);
       return res.send(err);
