@@ -55,7 +55,3 @@ comment:{
   message:
 }
 ```
-
-#Slack
-
-TEST
