@@ -63,6 +63,9 @@ app.get('/getPosts', controllers.posts.getPosts);
 // like and dislike
 app.get('/like/add/:id', controllers.posts.addLike);
 app.get('/dislike/add/:id', controllers.posts.addDislike);
+// message
+app.get('/message/add/:id', controllers.posts.addMessage);
+app.get('/message/get/:id', controllers.posts.getMessage);
 // 新聞貼文
 app.get('/news/urlPreview', controllers.news.urlPreview);
 
