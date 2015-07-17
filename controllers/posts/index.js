@@ -3,5 +3,6 @@ module.exports = {
   addLike: require('./like').addlike,
   addDislike: require('./like').adddislike,
   addMessage: require('./message').addMessage,
-  getMessage: require('./message').getMessage
+  getMessage: require('./message').getMessage,
+  post: require('./post')
 };

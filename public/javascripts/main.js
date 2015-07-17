@@ -1,5 +1,23 @@
 $(function(){
 
+  $( ".comment-form" ).submit(function( event ) {
+    console.log(123)
+    event.preventDefault();
+
+    var $form = $( this ),
+      term = $form.find( "input[name='comment']" ).val(),
+      url = $form.attr( "action" );
+    console.log(url,123)
+    // var posting = $.post( url, { s: term } );
+    // console.log(term,123)
+
+    // posting.done(function( data ) {
+    //   console.log(data)
+    //   var content = $( data ).find( "#content" );
+    //   $( "#result" ).empty().append( content );
+    // });
+  });
+
   var likeHandler = function (type, target) {
       // progress-dislike
       var likeNode = target.find(".like");
@@ -25,8 +43,8 @@ $(function(){
 
   $.get( "/getPosts", function( data ) {
     console.log(data)
-    $("#contentTmpl").tmpl(data.posts,{ 
-          myValue: "somevalue", 
+    $("#contentTmpl").tmpl(data.posts,{
+          myValue: "somevalue",
           count: function() {
             data = this.data.messages
             console.log(this.data.messages)
@@ -63,10 +81,10 @@ $(function(){
     var id = url.split("/").pop();
 
     $.get(target.attr("href"), function (result) {
-      
+
       if (result.code !== 200) {
         console.log(result);
-        return alert("Please login and try again");  
+        return alert("Please login and try again");
       }
 
       var inTarget = (url.indexOf("dislike") > -1 ) ? "dislike" : "like";
