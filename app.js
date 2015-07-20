@@ -60,7 +60,9 @@ app.get('/logout', controllers.users.logout);
 app.post('/upload', multipart(), controllers.users.upload);
 // 貼文
 app.get('/getPosts', controllers.posts.getPosts);
-app.get('/like', controllers.posts.like);
+// like and dislike
+app.get('/like/add/:id', controllers.posts.addLike);
+app.get('/dislike/add/:id', controllers.posts.addDislike);
 // 新聞貼文
 app.get('/news/urlPreview', controllers.news.urlPreview);
 

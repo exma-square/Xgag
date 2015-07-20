@@ -1,5 +1,5 @@
 script#contentTmpl(type="text/x-jquery-tmpl")
-  .post.jumbotron
+  .post.jumbotron(id="${_id}")
     .post-header
       .item-title
         h3.badge-evt.badge-track(href="#") ${title}
@@ -12,13 +12,26 @@ script#contentTmpl(type="text/x-jquery-tmpl")
           p.text-muted.text-left.badge-evt.badge-track(href="#") ${content}...
       .clearfix
     .post-footer
-      //- .post-info 56% 讚 · 10 評論
-      button.btn.btn-default.btn-lg
-        i.fa.fa-thumbs-o-up
-      button.btn.btn-default.btn-lg
-        i.fa.fa-thumbs-down
-      button.btn.btn-default.btn-lg.comment-btn
-        i.fa.fa-comment-o
+      div.progress
+        div.progress-like.progress-bar.progress-bar-info(style="width: ${percent.like}%")
+        div.progress-dislike.progress-bar.progress-bar-danger(style="width: ${percent.dislike}%")
+      div.media
+        div.pull-left
+          a(href="/like/add/${_id}").btn.btn-default.btn-lg.motion.btn-primary
+            span.like ${like.length}
+            | 讚 ·  
+            i.fa.fa-thumbs-o-up
+      
+        div.pull-right
+          a(href="/dislike/add/${_id}").btn.btn-default.btn-lg.motion.btn-danger
+            span.dislike ${dislike.length}
+            | 幹  ·       
+            i.fa.fa-thumbs-down
+      
+      div.comment
+        button.btn.btn-default.btn-lg.comment-btn
+          i.fa.fa-comment-o
+      
     p.comment-info.bg-danger 共 ${$item.count} 則回應
     .comment-box
       .comment-body

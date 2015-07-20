@@ -1,4 +1,5 @@
 module.exports = {
   getPosts: require('./getPosts'),
-  like: require('./like'),
+  addLike: require('./like').addlike,
+  addDislike: require('./like').adddislike
 };
