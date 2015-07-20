@@ -45,13 +45,18 @@ header(id="xgag-header" class="navbar affix affix-display")
                   input(type="text" class="form-control" name="s" placeholder="搜尋文章..." value="")
                   button(type="submit" class="btn")
                     i(class="fa fa-search")
-              li
-                a(href="#post")
-                  i(class="fa fa-cloud-upload")
-                  | 新增po文
-              li
-                a(href="#login")
-                  | 登入 / 註冊
+              if user
+                li
+                  a(href='#' data-toggle='modal' data-target='.upload-modal')
+                    i(class="fa fa-cloud-upload")
+                    | 新增po文
+              else
+                li
+                  a(href='#' data-toggle='modal' data-target='.signup-modal')
+                    | 註冊
+                li
+                  a(href='#' data-toggle='modal' data-target='.login-modal')
+                    | 登入
             ul(id="menu-main-menu" class="nav navbar-nav")
               li(id="" class=" menu-item-type-custom menu-item-object-custom current-current_page_item menu-item-home active")
                 a(title="New" href="#new")
