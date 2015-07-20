@@ -5,7 +5,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
         .row
           article.content-post.post
             a.post-thumbnail(href="#" aria-hidden="true")
-              img(width="700" height="396" src="http://static.ettoday.net/images/1182/d1182115.jpg" class="attachment-lg " alt="")
+              img(width="700" height="396" src="${image}" class="attachment-lg " alt="")
             .content-body
               p.label-wrap
                 span.label.label-part.label-sticky
@@ -13,7 +13,8 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   | 推爆
               h2.content-title
                 a(href="#")
-                  | 腿胸雙絕王馨瑤泳池大秀身材　雪白肌膚完美表現比基尼
+                  | ${newsTitle}
+                  //- | ${title}
               .content-meta
                 span.posted-on
                   i.fa.fa-calendar-o
@@ -34,7 +35,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   i.fa.fa-comment-o
                   a(href="#") 10 評論
               .content-text
-                p 富少李宗瑞被控性侵、偷拍多名女子，其中17名被害人向李宗瑞求償2745萬元，目前最高法院還在審理。第18名遭到性侵的女子提民事求償，最高法院判決出爐，維持二審見解，要他賠償被害人200萬元定讞，這也是李宗瑞</p>
+                p ${content}...
             .content-footer.clearfix
               .content-footer-share
                 a.btn.social-sharing.share-facebook(onclick="")
@@ -49,9 +50,11 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                     | 推特
               .content-footer-meta
                 .post-vote-header
-                  a.btn.btn-default.post-vote.post-vote-up(href="#vote-up" title="Like")
+                  a.btn.btn-default.post-vote.post-vote-up.motion.btn-primary(href="/like/add/${_id}" title="Like")
                     i.fa.fa-thumbs-o-up
+                    span.like ${like.length}
                   span.vote-count
-                    | 209
-                  a.btn.btn-default.post-vote.post-vote-down(href="#vote-down" title="Dislike")
+                  a.btn.btn-default.post-vote.post-vote-down.motion.btn-danger(href="/dislike/add/${_id}" title="Dislike")
                     i.fa.fa-thumbs-o-down
+                    span.dislike ${dislike.length}
+
