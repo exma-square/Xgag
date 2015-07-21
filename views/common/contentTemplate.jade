@@ -3,7 +3,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
     #xgag-content.clearfix(style="padding-top:80px")
       #content-column
         .row
-          article.content-post.post
+          article.content-post.post(id="${_id}")
             a.post-thumbnail(href="#" aria-hidden="true")
               img(width="700" height="396" src="${image}" class="attachment-lg " alt="")
             .content-body
@@ -38,6 +38,9 @@ script#contentTmpl(type="text/x-jquery-tmpl")
               .content-text
                 p ${content}...
             .content-footer.clearfix
+              .progress
+                .progress-like.progress-bar.progress-bar-info(style="width: ${percent.like}%")
+                .progress-dislike.progress-bar.progress-bar-danger(style="width: ${percent.dislike}%")
               .content-footer-share
                 a.btn.social-sharing.share-facebook(onclick="")
                   i.fa.fa-facebook
@@ -51,11 +54,11 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                     | 推特
               .content-footer-meta
                 .post-vote-header
-                  a.btn.btn-default.post-vote.post-vote-up.motion.btn-primary(href="/like/add/${_id}" title="Like")
+                  a.btn.btn-default.post-vote.post-vote-up.motion(href="/like/add/${_id}" title="Like")
                     i.fa.fa-thumbs-o-up
                     span.like ${like.length}
                   span.vote-count
-                  a.btn.btn-default.post-vote.post-vote-down.motion.btn-danger(href="/dislike/add/${_id}" title="Dislike")
+                  a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/${_id}" title="Dislike")
                     i.fa.fa-thumbs-o-down
                     span.dislike ${dislike.length}
 
