@@ -1,0 +1,133 @@
+header(id="xgag-header" class="navbar affix affix-display")
+  .primary-menu
+    .container
+      .navbar-inner.row
+        .col-md-12
+          .navbar-header
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-navbar")
+              i(class="fa fa-bars")
+            a(class="brand brand-logo" href="#" title="" rel="home")
+              img(class="img-responsive" src="images/xgaglogo.png" alt="")
+          .collapse.navbar-collapse#menu-navbar
+            .navbar-right.hidden-xs
+              .header-actions
+                if !user
+                  a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.login-modal')
+                    | 登入
+                  a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.signup-modal')
+                    | 註冊
+                else
+                  a.tab.btn.theme_btn.navbar-btn(href='#' data-toggle='modal' data-target='.upload-modal')
+                    i(class="fa fa-cloud-upload")
+                    | 新增po文
+                  a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                    i.glyphicon.glyphicon-user
+                    | #{user.name}
+                    span.caret
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='/users') My Profile
+                      li
+                        a(href='#') Settings
+                      li.divider
+                      li
+                        a(href='/logout') Logout
+
+
+
+                form(action="#search" class="navbar-form navbar-left" role="search")
+                  input(type="text" class="form-control" name="s" placeholder="搜尋文章..." value="")
+                  button(type="submit" class="btn")
+                    i(class="fa fa-search")
+            ul(class="user-nav nav navbar-nav visible-xs-block")
+              li
+                form(action="#" class="navbar-form navbar-left" role="search")
+                  input(type="text" class="form-control" name="s" placeholder="搜尋文章..." value="")
+                  button(type="submit" class="btn")
+                    i(class="fa fa-search")
+              if user
+                li
+                  a(href='#' data-toggle='modal' data-target='.upload-modal')
+                    i(class="fa fa-cloud-upload")
+                    | 新增po文
+              else
+                li
+                  a(href='#' data-toggle='modal' data-target='.signup-modal')
+                    | 註冊
+                li
+                  a(href='#' data-toggle='modal' data-target='.login-modal')
+                    | 登入
+            ul(id="menu-main-menu" class="nav navbar-nav")
+              li(id="" class=" menu-item-type-custom menu-item-object-custom current-current_page_item menu-item-home active")
+                a(title="New" href="#new")
+                  i(class="fa fa-diamond")
+                  | &nbsp;&nbsp;最新
+              li(id="" class=" menu-item-type-post_type menu-item-object-page")
+                a(title="Trending" href="#feed")
+                  i(class="fa fa-bolt")
+                  | &nbsp;&nbsp;趨勢文章
+              li(id="" class=" menu-item-type-post_type menu-item-object-page")
+                a(title="Top 10" href="#hotshit")
+                  i(class="fa fa-signal")
+                  | &nbsp;&nbsp;熱門排行
+            ul(id="menu-secondary" class="nav navbar-nav visible-xs-block")
+              li(id="cate1" class="menu-category")
+                a(title="趣味" href="#")
+                  | 趣味
+              li(id="cate2" class="menu-category")
+                a(title="分類" href="#")
+                  | 分類1
+              li(id="cate3" class="menu-category")
+                a(title="分類" href="#")
+                  | 分類2
+              li(id="cate4" class="menu-category")
+                a(title="分類" href="#")
+                  | 分類3
+              li(id="cate5" class="menu-category")
+                a(title="Music" href="#")
+                  | Music
+              li(id="cate6" class="menu-category")
+                a(title="分類" href="#")
+                  | 分類4
+              li(id="cate7" class="menu-category")
+                a(title="分類" href="#")
+                  | 分類5
+              li(id="cate8" class="menu-category")
+                a(title="分類" href="#")
+                  | 分類6
+  .secondary-menu.hidden-xs
+    .container
+      .row
+        .collapse.navbar-collapse
+          ul(class="nav navbar-nav")
+            li.menu-category
+              a(title="趣味" href="#")
+                | 趣味
+            li.menu-category
+              a(title="分類" href="#")
+                | 分類1
+            li.menu-category
+              a(title="分類" href="#")
+                | 分類2
+            li.menu-category
+              a(title="分類" href="#")
+                | 分類3
+            li.menu-category
+              a(title="Music" href="#")
+                | Music
+            li.menu-category
+              a(title="分類" href="#")
+                | 分類4
+            li.menu-category
+              a(title="分類" href="#")
+                | 分類5
+            li.menu-category
+              a(title="分類" href="#")
+                | 分類6
+- if (flash.length > 0)
+  - for message in flash
+    .alert.alert-warning.alert-dismissible.fade.in(role='alert')
+      button.close(type='button', data-dismiss='alert', aria-label='Close')
+        span(aria-hidden='true') ×
+      strong 登入失敗
+      =message.message
