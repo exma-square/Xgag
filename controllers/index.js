@@ -9,6 +9,8 @@ module.exports = function(app) {
 
   app.use('/'               , root);
   app.get('/users'          , users.overview);
+  app.get('/post/:id'       , posts.post);
+
   // 註冊
   app.post('/create'        , users.create);
   // 登入
