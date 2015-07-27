@@ -1,0 +1,32 @@
+doctype html
+html
+	head
+		title Node Authentication
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap-theme.min.css')
+		link(rel='stylesheet' href='/font-awesome/css/font-awesome.min.css')
+		style. 
+			body{padding-top:80px; word-wrap:break-word;}
+	body
+		block content
+		.container
+			.page-header.text-center
+				h1
+					span.fa.fa-anchor Profile Page
+					a(href="/logout" class="btn btn-default btn-sm") Logout
+			.row
+				.col-sm-6
+					.well
+						h3.fa.fa-user
+							span Local
+						p
+							strong id:
+								| #{user._id}
+							br
+							strong email:
+								| #{user.local.email}
+							br
+							strong password:
+								| #{user.local.password}
+							br

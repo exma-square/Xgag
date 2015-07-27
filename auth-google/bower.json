@@ -1,0 +1,20 @@
+{
+  "name": "Random-restaurant",
+  "version": "0.0.0",
+  "homepage": "https://github.com/billy-king/Random-restaurant",
+  "authors": [
+    "Billyking <billyking19920205@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.3.0"
+  }
+}

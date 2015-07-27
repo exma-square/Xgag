@@ -1,0 +1,30 @@
+doctype html
+html
+	head
+		title Node Authentication
+		link(rel='stylesheet' href='/stylesheets/style.css')
+		link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap-theme.min.css')
+		link(rel='stylesheet' href='/font-awesome/css/font-awesome.min.css')
+		style.
+			body{padding-top:80px;}
+	body
+		.container
+		.col-sm-6.col-sm-offset-3
+				h1
+					span.fa.fa-sign-in Login
+				if message.length > 0
+					.alert.alert-danger #{message}
+				form(action="/login" method="post")
+					.form-group
+						label Email
+						input(type="text" class="form-control" name="email")
+					.form-group
+						label Password
+						input(type="password" class="form-control" name="password")
+					button(type="submit" class="btn btn-warning btn-lg" label="Login") Login
+				hr
+				p Need an account?
+					a(href="/signup") Signup
+				p Or go
+					a(href="/") home
