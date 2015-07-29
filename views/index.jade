@@ -7,3 +7,9 @@ block content
 
       .col-md-4(style="margin-top: 80px;")
         include sidebar
+
+block js
+  script(type='text/javascript').
+    $(function(){
+      getPostsAjax();
+    });

@@ -27,7 +27,7 @@ module.exports = function (req, res){
       console.error(err);
       return res.send(err);
     }
-    
+    console.log(posts)
     for(key in posts) {
       posts[key].like = posts[key].like || [];
       posts[key].dislike = posts[key].dislike || [];

@@ -1,0 +1,81 @@
+extends common/layout
+
+block content
+
+  .container
+    .row
+      .col-md-8.post-clump
+        if posts
+          #site-body
+            #xgag-content.clearfix(style="padding-top:80px")
+              #content-column
+                .row
+                  article.content-post.post(id="#{posts._id}")
+                    a.post-thumbnail(href="#" aria-hidden="true")
+                      img(width="700" height="396" src="#{posts.image}" class="attachment-lg " alt="")
+                    .content-body
+                      p.label-wrap
+                        span.label.label-part.label-sticky
+                          i.fa.fa-star
+                          | 推爆
+                      h2.content-title
+                        a(href="#")
+                          | #{posts.newsTitle}
+                        p
+                          | 點評： #{posts.title}
+                      .content-meta
+                        span.posted-on
+                          i.fa.fa-calendar-o
+                          span.screen-reader-text
+                            | Posted on
+                            a(href="#" rel="bookmark")
+                              time.entry-date.published(datetime="") 2015/7/13
+                              time.updated(datetime="") 2015/7/14
+                        span.byline
+                          i.fa.fa-pencil
+                          span.author.vcard
+                          span.screen-reader-text 作者
+                            a.url.fn.n(href="#") 李宗瑞
+                        span.cat-links
+                          i.fa.fa-folder-o
+                            a(href="#" title="View all posts in Nature") 類別畜生
+                        span.comments-link
+                          i.fa.fa-comment-o
+                          a(href="#") 10 評論
+                      .content-text
+                        p #{posts.content}...
+                    .content-footer.clearfix
+                      .progress
+                        .progress-like.progress-bar.progress-bar-info(style="width: #{posts.percent.like}%")
+                        .progress-dislike.progress-bar.progress-bar-danger(style="width: #{posts.percent.dislike}%")
+                      .content-footer-share
+                        a.btn.social-sharing.share-facebook(onclick="")
+                          i.fa.fa-facebook
+                          span.hidden-xs.hidden-sm 分享至Facebook
+                          span.visible-xs-inline.visible-sm-inline 分享
+                        a.btn.social-sharing.share-twitter(onclick="")
+                          i.fa.fa-twitter
+                          span.hidden-xs.hidden-sm
+                            | 分享至Twitter
+                          span.visible-xs-inline.visible-sm-inline
+                            | 推特
+                      .content-footer-meta
+                        .post-vote-header
+                          a.btn.btn-default.post-vote.post-vote-up.motion(href="/like/add/${_id}" title="Like")
+                            i.fa.fa-thumbs-o-up
+                            span.like #{posts.like.length}
+                          span.vote-count
+                          a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/${_id}" title="Dislike")
+                            i.fa.fa-thumbs-o-down
+                            span.dislike #{posts.dislike.length}
+
+
+
+      .col-md-4(style="margin-top: 80px;")
+        include sidebar
+
+block js
+  //- script(type='text/javascript').
+  //-   $(function(){
+  //-     getPost('55861e1e8bd4804e5e6df1ce');
+  //-   })

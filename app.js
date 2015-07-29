@@ -51,7 +51,7 @@ app.use(express.static(__dirname + '/bower_components'));
 var controllers = require('./controllers');
 app.get('/', controllers.root.home);
 app.get('/users', controllers.users.overview);
-app.get('/post/:id', controllers.posts.post);
+// app.get('/post/:id', controllers.posts.post);
 // 註冊
 app.post('/create', controllers.users.create);
 // 登入
