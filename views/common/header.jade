@@ -14,6 +14,9 @@ header(id="xgag-header" class="navbar affix affix-display")
                 if !user
                   a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.login-modal')
                     | 登入
+                  a.btn.btn-danger(href="/auth/google")
+                    span.fa.fa-google-plus 
+                      | Google
                   a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.signup-modal')
                     | 註冊
                 else

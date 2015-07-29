@@ -12,7 +12,7 @@ var fs = require('fs');
 var stylus = require('stylus');
 var nib = require('nib');
 var flash = require('flash');
-
+var passport = require('passport');
 
 var app = express();
 
@@ -33,6 +33,8 @@ app.use(session({
     maxAge: 1000 * 60
   }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 app.use(stylus.middleware({
   src: __dirname + '/public/stylus', // .styl files are located in `views/stylesheets`
@@ -45,6 +47,8 @@ app.use(stylus.middleware({
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(__dirname + '/bower_components'));
 
+require('./config/passport')(passport);
+
 /*
  * api
  */
@@ -55,6 +59,14 @@ app.get('/users', controllers.users.overview);
 app.post('/create', controllers.users.create);
 // 登入
 app.post('/login', controllers.users.login);
+//google 登入
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+//google callback
+app.get('/auth/google/callback',
+            passport.authenticate('google', {
+                    successRedirect : '/profile',
+                    failureRedirect : '/'
+            }));
 // 登出
 app.get('/logout', controllers.users.logout);
 app.post('/upload', multipart(), controllers.users.upload);
