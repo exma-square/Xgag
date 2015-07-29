@@ -2,6 +2,7 @@
 // load all the things we need
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+var User = require('../models/user');
 // load the auth variables
 var configAuth = require('./auth');
 
@@ -43,7 +44,7 @@ module.exports = function(passport) {
                 } else {
                     // if the user isnt in our database, create a new user
                     var newUser          = new User();
-
+                    console.log(profile.id);
                     // set all of the relevant information
                     newUser.google.id    = profile.id;
                     newUser.google.token = token;
