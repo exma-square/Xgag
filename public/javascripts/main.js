@@ -23,29 +23,30 @@ $(function(){
       target.find(".progress-like").css({width: like + "%"});
   };
 
-  $.get( "/getPosts", function( data ) {
-    console.log(data)
-    $("#contentTmpl").tmpl(data.posts,{ 
-          myValue: "somevalue", 
-          count: function() {
-            data = this.data.messages
-            console.log(this.data.messages)
-            if(data)
-              return Object.keys(data).length;
-            return 0;
-          },
-          message: function() {
-            $("#contentTmplComment").tmpl(this.data.messages).appendTo(".aaa");
-            return true;
-          }
-      }).appendTo(".post-clump");
-    $('.comment-btn').on('click', function(){
-      $(this).parent().parent().find('textarea').focus();
+  getPostsAjax = function(){
+    $.get( "/getPosts", function( data ) {
+      $("#contentTmpl").tmpl(data.posts,{
+            myValue: "somevalue",
+            count: function() {
+              data = this.data.messages
+              console.log(this.data.messages)
+              if(data)
+                return Object.keys(data).length;
+              return 0;
+            },
+            message: function() {
+              $("#contentTmplComment").tmpl(this.data.messages).appendTo(".aaa");
+              return true;
+            }
+        }).appendTo(".post-clump");
+      $('.comment-btn').on('click', function(){
+        $(this).parent().parent().find('textarea').focus();
+      });
+      $("img").error(function () {
+        $(this).attr("src", "/images/error/error.png");
+      });
     });
-    $("img").error(function () {
-      $(this).attr("src", "/images/error/error.png");
-    });
-  });
+  }
 
   $("#user-post-url").focusout(function(){
     var url = $(this).val();
@@ -63,10 +64,10 @@ $(function(){
     var id = url.split("/").pop();
 
     $.get(target.attr("href"), function (result) {
-      
+
       if (result.code !== 200) {
         console.log(result);
-        return alert("Please login and try again");  
+        return alert("Please login and try again");
       }
 
       var inTarget = (url.indexOf("dislike") > -1 ) ? "dislike" : "like";
