@@ -1,24 +1,4 @@
-
-var controllers = require('./controllers');
-
 module.exports = function(app, passport) {
-    app.get('/', controllers.root.home);
-    app.get('/users', controllers.users.overview);
-    // 註冊
-    //app.post('/create', controllers.users.create);
-    // 登入
-    //app.post('/login', controllers.users.login);
-
-    // 登出
-    app.get('/logout', controllers.users.logout);
-    app.post('/upload', multipart(), controllers.users.upload);
-    // 貼文
-    app.get('/getPosts', controllers.posts.getPosts);
-    // like and dislike
-    app.get('/like/add/:id', controllers.posts.addLike);
-    app.get('/dislike/add/:id', controllers.posts.addDislike);
-    // 新聞貼文
-    app.get('/news/urlPreview', controllers.news.urlPreview);
 // =====================================
     // LOGIN ===============================
     // =====================================
@@ -32,7 +12,7 @@ module.exports = function(app, passport) {
     // process the login form
     // app.post('/login', do all our passport stuff here);
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
+        successRedirect : '/profile', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
