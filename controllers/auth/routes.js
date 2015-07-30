@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
     // app.post('/login', do all our passport stuff here);
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
     // =====================================
@@ -39,12 +39,7 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.jade', {
-            user : req.user // get the user out of session and pass to template
-        });
-    });
-    app.get('/profile-google', isLoggedIn, function(req, res) {
-        res.render('profile-google.jade', {
+        res.render('index.jade', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -67,7 +62,7 @@ module.exports = function(app, passport) {
     // the callback after google has authenticated the user
     app.get('/auth/google/callback',
             passport.authenticate('google', {
-                    successRedirect : '/',
+                    successRedirect : '/profile',
                     failureRedirect : '/'
             }));
 };

@@ -51,6 +51,7 @@ app.use(stylus.middleware({
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(__dirname + '/bower_components'));
 
+
 require('./controllers/auth/routes')(app,passport);
 require('./config/passport')(passport);
 
