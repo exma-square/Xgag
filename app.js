@@ -13,6 +13,10 @@ var stylus = require('stylus');
 var nib = require('nib');
 var flash = require('flash');
 var passport = require('passport');
+var mongoose = require('mongoose');
+var configDB = require('./config/database');
+
+mongoose.connect(configDB.url);
 
 var app = express();
 
@@ -47,36 +51,10 @@ app.use(stylus.middleware({
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(__dirname + '/bower_components'));
 
+require('./controllers/auth/routes')(app,passport);
 require('./config/passport')(passport);
 
-/*
- * api
- */
-var controllers = require('./controllers');
-app.get('/', controllers.root.home);
-app.get('/users', controllers.users.overview);
-// 註冊
-app.post('/create', controllers.users.create);
-// 登入
-app.post('/login', controllers.users.login);
-//google 登入
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-//google callback
-app.get('/auth/google/callback',
-            passport.authenticate('google', {
-                    successRedirect : '/profile',
-                    failureRedirect : '/'
-            }));
-// 登出
-app.get('/logout', controllers.users.logout);
-app.post('/upload', multipart(), controllers.users.upload);
-// 貼文
-app.get('/getPosts', controllers.posts.getPosts);
-// like and dislike
-app.get('/like/add/:id', controllers.posts.addLike);
-app.get('/dislike/add/:id', controllers.posts.addDislike);
-// 新聞貼文
-app.get('/news/urlPreview', controllers.news.urlPreview);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
