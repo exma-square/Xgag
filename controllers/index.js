@@ -9,7 +9,7 @@ module.exports = function(app) {
 
   app.use('/'               , root);
   app.get('/users'          , users.overview);
-  app.get('/post/:id'       , posts.post);
+  app.get('/detailPost/:id' , posts.detailPost);
 
   // 註冊
   app.post('/create'        , users.create);

@@ -9,6 +9,6 @@ module.exports = function (req, res){
       return res.send(err);
     }
     res.json(posts)
-    // res.render('user.jade', { title: 'OVERVIEW', user: req.session.user, posts: posts || 0 });
+    // res.render('postDetail.jade', { title: 'OVERVIEW', user: req.session.user, posts: posts || 0 });
   });
 };
