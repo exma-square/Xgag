@@ -4,27 +4,23 @@ var models = require('../../models');
 module.exports = {
   addlike: function (req, res) {
     var id = req.params["id"];
-    
+
     if ( ! req.session.user) {
       return res.json({
-        code: 300, 
+        code: 300,
         message: "please login"
       });
     }
-    
+
     if (! id) {
       return res.json({
-        code: 500, 
+        code: 500,
         message: "id is not defined"
       });
     }
 
 
     models.posts.update({_id: mongojs.ObjectId(id)}, {$push: { like: req.session.user._id }}, function(err, post){
-      console.log(err);
-      console.log(post);
-      console.log( req.session.user._id )
-
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 
@@ -36,14 +32,14 @@ module.exports = {
     var id = req.params["id"];
     if ( ! req.session.user) {
       return res.json({
-        code: 300, 
+        code: 300,
         message: "please login"
       });
     }
-    
+
     if (! id) {
       return res.json({
-        code: 500, 
+        code: 500,
         message: "id is not defined"
       });
     }
