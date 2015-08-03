@@ -4,7 +4,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
       #content-column
         .row
           article.content-post.post(id="${_id}")
-            a.post-thumbnail(href="#" aria-hidden="true")
+            a.post-thumbnail(href="/detailPost/${_id}" aria-hidden="true")
               img(width="700" height="396" src="${image}" class="attachment-lg " alt="")
             .content-body
               p.label-wrap
