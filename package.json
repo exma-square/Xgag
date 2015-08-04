@@ -39,7 +39,8 @@
     "passport-local": "^1.0.0",
     "request": "^2.57.0",
     "serve-favicon": "~2.2.0",
-    "stylus": "^0.50.0"
+    "stylus": "^0.50.0",
+    "bcrypt-nodejs": "0.0.3"
   },
   "main": "app.js",
   "repository": {
