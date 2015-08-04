@@ -3,7 +3,7 @@ var path         = require('path');
 var app          = express();
 var passport     = require('passport');
 
-
+// 希望週五颱風假
 /*
  * 載入全域變數與設定
  */
