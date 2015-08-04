@@ -3,7 +3,7 @@ var path         = require('path');
 var app          = express();
 var passport     = require('passport');
 
-
+// 想回家了
 /*
  * 載入全域變數與設定
  */
