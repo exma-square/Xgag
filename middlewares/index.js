@@ -5,11 +5,11 @@ var bodyParser   = require('body-parser');
 var session      = require('cookie-session');
 var stylus       = require('stylus');
 var nib          = require('nib');
-var passport = require('passport');
+var passport     = require('passport');
 
 module.exports = function(app) {
 
-  app.use(favicon(__dirname + '../public/images/error/error.png'));
+  // app.use(favicon(__dirname + '../public/images/error/error.png'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));

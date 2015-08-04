@@ -40,7 +40,8 @@
     "request": "^2.57.0",
     "serve-favicon": "~2.2.0",
     "stylus": "^0.50.0",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "favicon": "0.0.2"
   },
   "main": "app.js",
   "repository": {
