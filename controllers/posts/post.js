@@ -3,7 +3,7 @@ var models = require('../../models');
 
 module.exports = function (req, res){
   var id = req.params['id']
-  models.find(mongoose.ObjectId(id)).sort({create_date:-1}).exec(function(err, posts){
+  models.find(mongoose.Types.ObjectId(id)).sort({create_date:-1}).exec(function(err, posts){
     if(err){
       console.error(err);
       return res.send(err);

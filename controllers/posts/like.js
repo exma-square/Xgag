@@ -19,8 +19,8 @@ module.exports = {
       });
     }
 
-    console.log(req.session.user._id , 111);
-    models.post.update({_id: mongoose.Type.ObjectId(id)}, {$push: { like: req.session.user._id }}, function(err, post){
+    models.post.update({_id: mongoose.Types.ObjectId(id)}, {$push: { like: req.session.user._id }}, function(err, post){
+      console.log(post , 111);
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 
@@ -44,7 +44,7 @@ module.exports = {
       });
     }
 
-    models.post.update({_id: mongoose.Type.ObjectId(id)}, {$push: { dislike: req.session.user._id }}, function(err, post){
+    models.post.update({_id: mongoose.Types.ObjectId(id)}, {$push: { dislike: req.session.user._id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 

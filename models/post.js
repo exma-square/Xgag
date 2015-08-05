@@ -15,7 +15,8 @@ var postSchema = mongoose.Schema({
     site_name   : String,
     like        : Array,
     dislike     : Array,
-    percent     : String
+    percent     : String,
+    comment     : Array
 });
 
 // create the model for users and expose it to our app
