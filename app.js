@@ -14,22 +14,25 @@ require('./Global');
 require('./middlewares')(app);
 
 /*
- * view引擎設定
+ * view引擎設定,dir = project_path/views,use jade
  */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+/*
+ *static file設定 in project_path/public and project_path/bower_components
+ */
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(__dirname + '/bower_components'));
 
-
-require('./controllers/auth/routes')(app,passport);
+/*
+ * 設定passport function
+ */
 require('./config/passport')(passport);
 
 /*
  * api
  */
-require('./controllers')(app);
+require('./controllers')(app,passport);
 
 /*
  * errorHandler

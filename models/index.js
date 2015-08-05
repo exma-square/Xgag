@@ -1,3 +1,6 @@
+/*
+ * mongoDB connect
+ */
 require('./setting');
 
 module.exports = {
