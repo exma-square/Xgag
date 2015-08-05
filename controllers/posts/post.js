@@ -1,9 +1,9 @@
-var mongojs = require('mongojs')
+var mongoose = require('mongoose')
 var models = require('../../models');
 
 module.exports = function (req, res){
   var id = req.params['id']
-  models.posts.find(mongojs.ObjectId(id)).sort({create_date:-1}, function(err, posts){
+  models.find(mongoose.ObjectId(id)).sort({create_date:-1}).exec(function(err, posts){
     if(err){
       console.error(err);
       return res.send(err);
