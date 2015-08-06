@@ -31,7 +31,6 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password , done) {
-        console.log('email:' + email + ' password:' + password);
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -186,9 +185,6 @@ module.exports = function(passport) {
                     var newUser            = new User();
 
                     // set all of the facebook information in our user model
-                    console.log("profile",profile);
-                    console.log("token",token);
-                    console.log("refreshToken",refreshToken);
                     newUser.facebook.id    = profile.id; // set the users facebook id                   
                     newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
                     newUser.facebook.name  = profile.displayName; // look at the passport user profile to see how names are returned
