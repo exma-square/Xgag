@@ -15,7 +15,7 @@ header(id="xgag-header" class="navbar affix affix-display")
                   a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.login-modal')
                     | 登入
                   a.btn.btn-danger(href="/auth/google")
-                    span.fa.fa-google-plus 
+                    span.fa.fa-google-plus
                       | Google
                   a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.signup-modal')
                     | 註冊
@@ -25,7 +25,7 @@ header(id="xgag-header" class="navbar affix affix-display")
                     | 新增po文
                   a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
                     i.glyphicon.glyphicon-user
-                    | #{user.name}
+                    | #{user.google.name}
                     span.caret
                     ul.dropdown-menu(role='menu')
                       li
