@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
 
-mongoose.connect(config.url);
-console.log('Mongodb connect to : ' + config.url);
+mongoose.connect(config.mongodb.url);
+console.info('Mongodb connect to : ' + config.mongodb.url);
