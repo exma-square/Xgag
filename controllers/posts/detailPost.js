@@ -36,10 +36,11 @@ module.exports = function (req, res){
       message: "id is not defined"
     });
   }
-  models.post.findOne({_id: mongoose.Types.ObjectId(id)}, function(err, post){
+  models.post.findOne({_id: mongoose.Types.ObjectId(id)}).exec(function(err, post){
 
     if (err)
       return res.json({ code: 500, message: "id is not found" });
+    post = JSON.parse(JSON.stringify(post));
     post.percent = countPercent(post);
     return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0 });
   });
