@@ -1,2 +1,2 @@
-global.database = require('./config/database');
+global.database = require('./config.json');
 global.models = require('./models');

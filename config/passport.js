@@ -5,10 +5,8 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 var User = require('../models/user');
-// load the auth variables
-var configAuth = require('./auth');
 
-module.exports = function(passport) {
+module.exports = function(passport , configAuth) {
 	passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
