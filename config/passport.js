@@ -6,7 +6,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 
 var User = require('../models/user');
 
-module.exports = function(passport , configAuth) {
+module.exports = function(passport) {
 	passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -107,9 +107,9 @@ module.exports = function(passport , configAuth) {
     // =========================================================================
     passport.use(new GoogleStrategy({
 
-        clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
+        clientID        : config.googleAuth.clientID,
+        clientSecret    : config.googleAuth.clientSecret,
+        callbackURL     : config.googleAuth.callbackURL,
 
     },
     function(token, refreshToken, profile, done) {
@@ -154,9 +154,9 @@ module.exports = function(passport , configAuth) {
     passport.use(new FacebookStrategy({
 
         // pull in our app id and secret from our auth.js file
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
+        clientID        : config.facebookAuth.clientID,
+        clientSecret    : config.facebookAuth.clientSecret,
+        callbackURL     : config.facebookAuth.callbackURL,
         profileFields   : ['id', 'displayName' , 'emails']
 
     },

@@ -2,7 +2,6 @@ var express      = require('express');
 var path         = require('path');
 var app          = express();
 var passport     = require('passport');
-var config       = require('./config.json');
 /*
  * 載入全域變數與設定
  */
@@ -27,7 +26,7 @@ app.use(express.static(__dirname + '/bower_components'));
 /*
  * 設定passport function
  */
-require('./config/passport')(passport, config);
+require('./config/passport')(passport);
 
 /*
  * api
