@@ -2,6 +2,7 @@ npm-debug.log
 bower_components/
 node_modules
 .tmp
+.config.json
 .DS_Store
 public/images/users/*.png
 public/images/users/*.jpg
