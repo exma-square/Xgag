@@ -43,6 +43,20 @@ module.exports = function(app , passport) {
         req.session.user = req.user.google;
         res.redirect('/');
   })
+  /*
+   *facebook
+   */
+  app.get('/auth/facebook', passport.authenticate('facebook', { scope :'email' }));
+  app.get('/auth/facebook/callback',passport.authenticate('facebook', {
+        successRedirect : '/log-success-facebook',
+        failureRedirect : '/'
+  }));
+  app.get('/log-success-facebook'     ,isLoggedIn,function(req, res){
+        req.session.user = req.user.facebook;
+        res.redirect('/');
+  })
+
+
   app.post('/upload'         , multipart(), users.upload);
   app.get ('/getPosts'       , posts.getPosts);
   app.get ('/like/add/:id'   , posts.addLike);
