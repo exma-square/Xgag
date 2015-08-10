@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var models = require('../../models');
+var objectIdSelect = mongoose.Types.ObjectId;
 
 module.exports = function (req, res){
   var id = req.params['id']
@@ -9,6 +10,5 @@ module.exports = function (req, res){
       return res.send(err);
     }
     res.json(posts)
-    // res.render('postDetail.jade', { title: 'OVERVIEW', user: req.session.user, posts: posts || 0 });
   });
 };

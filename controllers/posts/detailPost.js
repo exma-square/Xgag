@@ -1,5 +1,6 @@
 var models = require('../../models');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
+var objectIdSelect = mongoose.Types.ObjectId;
 
 module.exports = function (req, res){
   var countPercent = function(data) {
@@ -36,7 +37,7 @@ module.exports = function (req, res){
       message: "id is not defined"
     });
   }
-  models.post.findOne({_id: mongoose.Types.ObjectId(id)}).exec(function(err, post){
+  models.post.findOne({_id: objectIdSelect(id)}).exec(function(err, post){
 
     if (err)
       return res.json({ code: 500, message: "id is not found" });
