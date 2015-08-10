@@ -1,10 +1,10 @@
-var mongojs = require('mongojs')
+var mongoose = require('mongoose')
 var models = require('../../models');
+var objectIdSelect = mongoose.Types.ObjectId;
 
 module.exports = {
   addlike: function (req, res) {
     var id = req.params["id"];
-
     if ( ! req.session.user) {
       return res.json({
         code: 300,
@@ -19,8 +19,7 @@ module.exports = {
       });
     }
 
-
-    models.posts.update({_id: mongojs.ObjectId(id)}, {$push: { like: req.session.user._id }}, function(err, post){
+    models.post.update({_id: objectIdSelect(id)}, {$push: { like: req.session.user._id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 
@@ -44,7 +43,7 @@ module.exports = {
       });
     }
 
-    models.posts.update({_id: mongojs.ObjectId(id)}, {$push: { dislike: req.session.user._id }}, function(err, post){
+    models.post.update({_id: objectIdSelect(id)}, {$push: { dislike: req.session.user._id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 

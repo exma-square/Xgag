@@ -61,11 +61,11 @@ block content
                             | 推特
                       .content-footer-meta
                         .post-vote-header
-                          a.btn.btn-default.post-vote.post-vote-up.motion(href="/like/add/${_id}" title="Like")
+                          a.btn.btn-default.post-vote.post-vote-up.motion(href="/like/add/#{posts._id}" title="Like")
                             i.fa.fa-thumbs-o-up
                             span.like #{posts.like.length}
                           span.vote-count
-                          a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/${_id}" title="Dislike")
+                          a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/#{posts._id}" title="Dislike")
                             i.fa.fa-thumbs-o-down
                             span.dislike #{posts.dislike.length}
 

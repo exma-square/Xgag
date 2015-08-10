@@ -21,18 +21,19 @@ module.exports = function (req, res){
     };
   };
 
-  models.posts.find().sort({create_date:-1}, function(err, posts){
-
+  models.post.find().sort({create_date:-1}).exec(function(err, posts){
     if(err){
       console.error(err);
       return res.send(err);
     }
+    posts = JSON.parse(JSON.stringify(posts));
     for(key in posts) {
       posts[key].like = posts[key].like || [];
       posts[key].dislike = posts[key].dislike || [];
       posts[key].comment = posts[key].comment || [];
       posts[key].percent = countPercent(posts[key]);
     }
+
 
     res.json({code: 200, posts: posts});
   });
