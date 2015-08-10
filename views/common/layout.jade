@@ -35,46 +35,6 @@ html(lang='en', mode='normal')
     include header
     block content
 
-    .modal.fade.login-modal(tabindex='-1' role='dialog' aria-labelledby='dialog-login' aria-hidden='true')
-      .modal-dialog
-        form.modal-content(action="/login" method="post")
-          .modal-header
-            button.close(type='button' data-dismiss='modal' aria-label='Close')
-              span(aria-hidden='true') &times;
-            h2.modal-title#dialog-login Login
-            span.text-info Log in with your email address
-          .modal-body
-            .form-group.form-group-lg
-              label.control-label(for='login-email-name') Email
-              input.form-control#login-email-name(type='text' name='email')
-            .form-group.form-group-lg
-              label.control-label(for='login-password') Password
-              input.form-control#login-password(type='password' name='password')
-          .modal-footer
-            button.btn.btn-default(type='button' data-dismiss='modal') Close
-            button.btn.btn-primary(type='submit') Log in
-
-    .modal.fade.signup-modal(tabindex='-1' role='dialog' aria-labelledby='dialog-signup' aria-hidden='true')
-      .modal-dialog
-        form.modal-content(action="/signup" method="post")
-          .modal-header
-            button.close(type='button' data-dismiss='modal' aria-label='Close')
-              span(aria-hidden='true') &times;
-            h2.modal-title#dialog-signup Become a member
-          .modal-body
-            .form-group.form-group-lg
-              label.control-label(for='signup-full-name') Full Name
-              input.form-control#signup-full-name(type='text' name='name')
-            .form-group.form-group-lg
-              label.control-label(for='signup-email') Email Address
-              input.form-control#signup-email(type='text' name='email')
-            .form-group.form-group-lg
-              label.control-label(for='signup-password') Password
-              input.form-control#signup-password(type='password' name='password')
-          .modal-footer
-            button.btn.btn-default(type='button' data-dismiss='modal') Close
-            button.btn.btn-primary(type='submit') Sign up
-
     .modal.fade.upload-modal(tabindex='-1' role='dialog' aria-labelledby='dialog-upload' aria-hidden='true')
       .modal-dialog.modal-lg
         form.modal-content#frmUploadFile(enctype='multipart/form-data' action='/upload' method='post' role = "form")

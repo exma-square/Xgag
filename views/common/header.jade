@@ -12,16 +12,12 @@ header(id="xgag-header" class="navbar affix affix-display")
             .navbar-right.hidden-xs
               .header-actions
                 if !user
-                  a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.login-modal')
-                    | 登入
                   a.btn.btn-danger(href="/auth/google")
                     span.fa.fa-google-plus
                       | Google
                   a.btn.btn-primary(href="/auth/facebook")
                     span.fa.fa-facebook
                       | Facebook
-                  a.tab.btn.btn-default.navbar-btn(href='#' data-toggle='modal' data-target='.signup-modal')
-                    | 註冊
                 else
                   a.tab.btn.theme_btn.navbar-btn(href='#' data-toggle='modal' data-target='.upload-modal')
                     i(class="fa fa-cloud-upload")
@@ -58,11 +54,13 @@ header(id="xgag-header" class="navbar affix affix-display")
                     | 新增po文
               else
                 li
-                  a(href='#' data-toggle='modal' data-target='.signup-modal')
-                    | 註冊
+                  a.btn.btn-danger(href="/auth/google")
+                    span.fa.fa-google-plus
+                      | Google
                 li
-                  a(href='#' data-toggle='modal' data-target='.login-modal')
-                    | 登入
+                  a.btn.btn-primary(href="/auth/facebook")
+                    span.fa.fa-facebook
+                      | Facebook
             ul(id="menu-main-menu" class="nav navbar-nav")
               li(id="" class=" menu-item-type-custom menu-item-object-custom current-current_page_item menu-item-home active")
                 a(title="New" href="#new")
