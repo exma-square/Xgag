@@ -42,7 +42,6 @@ module.exports = {
         message: "id is not defined"
       });
     }
-    console.log(objectIdSelect(id) ,id.length ,  typeof(id) , 111);
     models.post.update({_id: objectIdSelect(id)}, {$push: { dislike: req.session.user._id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
