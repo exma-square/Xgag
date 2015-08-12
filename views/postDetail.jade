@@ -68,6 +68,11 @@ block content
                           a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/#{posts._id}" title="Dislike")
                             i.fa.fa-thumbs-o-down
                             span.dislike #{posts.dislike.length}
+                    .comment-box
+                      .comment-body
+                        form(action="/comment/add/#{posts._id}" role="form")
+                          .form-group
+                            input(type="text" class="form-control" name="comment" placeholder="評論..." value="")
 
 
 
