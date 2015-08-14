@@ -49,7 +49,11 @@ module.exports = {
   },
   addcomment: function(req, res){
     var id = req.params["id"].replace(/id=/g, "");
-    var comment = req.query["comment"]
+    var newComment = new models.comment;
+
+    newComment.name = req.session.user.name;
+    newComment.creat_date = new Date();
+    newComment.message = req.query["comment"];
     if ( ! req.session.user) {
       return res.json({
         code: 300,
@@ -63,12 +67,18 @@ module.exports = {
         message: "id is not defined"
       });
     }
-    models.post.update({_id: objectIdSelect(id)}, {$push: { comment: req.query["comment"]}}, function(err, post){
-      console.log(err);
-      if (err)
-        return res.json({ code: 500, message: "id is not found" });
-
-      return res.json({code: 200, post: post});
+    newComment.save(function(err) {
+      if (err){
+        console.error(err);
+        return res.send(err);
+      }
+      console.log('User saved successfully!');
+      models.post.update({_id: objectIdSelect(id)}, {$push: { comment: newComment._id}}, 
+        function(err, post){
+          if (err)
+            return res.json({ code: 500, message: "id is not found" });
+          res.redirect('/');
+      });
     });
   }
 
