@@ -48,11 +48,12 @@ module.exports = {
     });
   },
   addcomment: function(req, res){
+    var date = new Date();
     var id = req.params["id"].replace(/id=/g, "");
     var newComment = new models.comment;
 
     newComment.name = req.session.user.name;
-    newComment.creat_date = new Date();
+    newComment.create_date = date;
     newComment.message = req.query["comment"];
     if ( ! req.session.user) {
       return res.json({
