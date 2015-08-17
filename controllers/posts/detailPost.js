@@ -26,10 +26,11 @@ module.exports = {
     var id = req.params["id"];
 
     if ( ! req.session.user) {
-      return res.json({
+      var error = {
         code: 300,
         message: "please login"
-      });
+      }
+      return res.render('index.jade', { title: 'Xgag', error: error});
     }
 
     if (! id) {
@@ -74,7 +75,7 @@ module.exports = {
         return res.send(err);
       }
       console.log('User saved successfully!');
-      models.post.update({_id: objectIdSelect(id)}, {$push: { comment: newComment._id}}, 
+      models.post.update({_id: objectIdSelect(id)}, {$push: { comment: newComment._id}},
         function(err, post){
           if (err)
             return res.json({ code: 500, message: "id is not found" });
