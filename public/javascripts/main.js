@@ -50,7 +50,7 @@ $(function(){
 
   getCommentsAjax = function(){
     $.get("/getComments" , function(data){
-      $("#comment")
+      
     })
 
   }

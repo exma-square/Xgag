@@ -81,6 +81,10 @@ block content
         include common/sidebar
 
 block js
+  script(type='text/javascript').
+    $(function(){
+      getCommentsAjax();
+    })
   //- script(type='text/javascript').
   //-   $(function(){
   //-     getPost('55861e1e8bd4804e5e6df1ce');

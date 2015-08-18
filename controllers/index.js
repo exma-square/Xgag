@@ -13,6 +13,7 @@ module.exports = function(app , passport) {
   app.get ('/detailPost/:id' , posts.detailPost);
   app.post('/upload'         , multipart(), users.upload);
   app.get ('/getPosts'       , posts.getPosts);
+  app.get ('/getComments'    , posts.getComments);
   app.get ('/like/add/:id'   , posts.addLike);
   app.get ('/dislike/add/:id', posts.addDislike);
   app.get ('/comment/add/:id', posts.addComment);
