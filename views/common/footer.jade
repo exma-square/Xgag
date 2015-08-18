@@ -30,3 +30,7 @@ footer#site-footer
           | , open source is &nbsp;&nbsp;
           a(href="https://github.com/exma-square/Xgag", target="_blank") Xgag project
       p Welcome to contact us hq[AT]exma-square.co
+if error
+  script(type='text/javascript').
+    alert('error: #{error.message}');
+    window.location.href = '/';
