@@ -48,6 +48,13 @@ $(function(){
     });
   }
 
+  getCommentsAjax = function(){
+    $.get("/getComments" , function(data){
+      $("#comment")
+    })
+
+  }
+
   $("#user-post-url").focusout(function(){
     var url = $(this).val();
     $.get( "/news/urlPreview", {url:url}, function( data ) {
@@ -80,4 +87,6 @@ $(function(){
     })
 
   });
+
+
 });

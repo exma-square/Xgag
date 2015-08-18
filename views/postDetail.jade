@@ -70,6 +70,7 @@ block content
                             span.dislike #{posts.dislike.length}
                     .comment-box
                       .comment-body
+                        hr
                         form(action="/comment/add/#{posts._id}" role="form")
                           .form-group
                             input(type="text" class="form-control" name="comment" placeholder="評論..." value="")

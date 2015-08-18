@@ -43,6 +43,7 @@ module.exports = {
       if (err)
         return res.json({ code: 500, message: "id is not found" });
       post = JSON.parse(JSON.stringify(post));
+      console.log(post, 111);
       post.percent = countPercent(post);
       return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0 });
     });
@@ -78,7 +79,7 @@ module.exports = {
         function(err, post){
           if (err)
             return res.json({ code: 500, message: "id is not found" });
-          res.redirect('/');
+          res.redirect('/detailPost/' + id);
       });
     });
   }
