@@ -69,6 +69,7 @@ block content
                             i.fa.fa-thumbs-o-down
                             span.dislike #{posts.dislike.length}
                     .comment-box
+                      .comment-area
                       .comment-body
                         hr
                         form(action="/comment/add/#{posts._id}" role="form")
@@ -80,10 +81,12 @@ block content
       .col-md-4(style="margin-top: 80px;")
         include common/sidebar
 
+  include common/commentTemplate
+
 block js
   script(type='text/javascript').
     $(function(){
-      getCommentsAjax();
+      getCommentsAjax('#{posts._id}');
     })
   //- script(type='text/javascript').
   //-   $(function(){

@@ -48,9 +48,14 @@ $(function(){
     });
   }
 
-  getCommentsAjax = function(){
-    $.get("/getComments" , function(data){
-      
+  getCommentsAjax = function(postId){
+    $.get("/getComments/" + postId , function(data){
+      $("#commentTmpl").tmpl(data.result, {
+        formatDate: function(){
+          date = this.data.create_date;
+          return moment(date).format('YYYY-MM-DD HH:mm');
+        }
+      }).appendTo(".comment-area");
     })
 
   }

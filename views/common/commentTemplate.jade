@@ -1,3 +1,4 @@
 script#commentTmpl(type="text/x-jquery-tmpl")
   div
-    span= console.log(message);
+    ul
+      li ${name} ${message} ${$item.formatDate()}
