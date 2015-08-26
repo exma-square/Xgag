@@ -12,7 +12,7 @@ block content
                 .row
                   article.content-post.post(id="#{posts._id}")
                     a.post-thumbnail(href="#" aria-hidden="true")
-                      img(width="700" height="396" src="#{posts.image}" class="attachment-lg " alt="")
+                      img(style='width:700px;height:396px' src="#{posts.image}" class="attachment-lg " alt="")
                     .content-body
                       p.label-wrap
                         span.label.label-part.label-sticky
@@ -34,14 +34,14 @@ block content
                         span.byline
                           i.fa.fa-pencil
                           span.author.vcard
-                          span.screen-reader-text 作者
-                            a.url.fn.n(href="#") 李宗瑞
+                          span.screen-reader-text 作者:
+                            a.url.fn.n(href="#") #{posts.name}
                         span.cat-links
                           i.fa.fa-folder-o
                             a(href="#" title="View all posts in Nature") 類別畜生
                         span.comments-link
                           i.fa.fa-comment-o
-                          a(href="#") 10 評論
+                          a(href="#") #{posts.comment} 評論
                       .content-text
                         p #{posts.content}...
                     .content-footer.clearfix
