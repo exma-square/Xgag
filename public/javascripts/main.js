@@ -50,6 +50,7 @@ $(function(){
 
   getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
+      console.log(data);
       $("#commentTmpl").tmpl(data.result, {
         formatDate: function(){
           date = this.data.create_date;
@@ -64,7 +65,7 @@ $(function(){
     var url = $(this).val();
     $.get( "/news/urlPreview", {url:url}, function( data ) {
       var string = "<h3 class='preview-title'>${title}</h3><p>${content}</p><img class='img-rounded' style='width:100%' src='${newspic}'/>";
-      $("#news-prewiew").html($.tmpl( string, data ));
+      $("#news-preview").html($.tmpl( string, data ));
     });
   });
 
