@@ -1,0 +1,15 @@
+{
+  "googleAuth"   : {
+    "clientID"      : "Google的clientID",
+    "clientSecret"  : "Google的clientSecret",
+    "callbackURL"   : "http://localhost:7000/auth/google/callback"
+  },
+  "facebookAuth" : {
+    "clientID"      : "Facebook的clientID",
+    "clientSecret"  : "Facebook的clientSecret",
+    "callbackURL"   : "http://localhost:7000/auth/facebook/callback"
+  },
+  "mongodb"      : {
+    "url"           : "mongodb://localhost:27017/資料庫名稱"
+  }
+}
