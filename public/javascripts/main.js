@@ -48,6 +48,18 @@ $(function(){
     });
   }
 
+  getCommentsAjax = function(postId){
+    $.get("/getComments/" + postId , function(data){
+      $("#commentTmpl").tmpl(data.result, {
+        formatDate: function(){
+          date = this.data.create_date;
+          return moment(date).format('YYYY-MM-DD HH:mm');
+        }
+      }).appendTo(".comment-area");
+    })
+
+  }
+
   $("#user-post-url").focusout(function(){
     var url = $(this).val();
     $.get( "/news/urlPreview", {url:url}, function( data ) {
@@ -80,4 +92,6 @@ $(function(){
     })
 
   });
+
+
 });
