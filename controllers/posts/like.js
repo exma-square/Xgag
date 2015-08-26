@@ -19,7 +19,7 @@ module.exports = {
       });
     }
 
-    models.post.update({_id: objectIdSelect(id)}, {$push: { like: req.session.user._id }}, function(err, post){
+    models.post.update({_id: objectIdSelect(id)}, {$push: { like: req.session.user.id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 
@@ -42,8 +42,7 @@ module.exports = {
         message: "id is not defined"
       });
     }
-
-    models.post.update({_id: objectIdSelect(id)}, {$push: { dislike: req.session.user._id }}, function(err, post){
+    models.post.update({_id: objectIdSelect(id)}, {$push: { dislike: req.session.user.id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 

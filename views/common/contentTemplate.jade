@@ -5,7 +5,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
         .row
           article.content-post.post(id="${_id}")
             a.post-thumbnail(href="/detailPost/${_id}" aria-hidden="true")
-              img(width="700" height="396" src="${image}" class="attachment-lg " alt="")
+              img(style='width:700px;height:396px' src="${image}" class="attachment-lg " alt="")
             .content-body
               p.label-wrap
                 span.label.label-part.label-sticky
@@ -28,13 +28,13 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   i.fa.fa-pencil
                   span.author.vcard
                   span.screen-reader-text 作者
-                    a.url.fn.n(href="#") 李宗瑞
+                    a.url.fn.n(href="#") ${name}
                 span.cat-links
                   i.fa.fa-folder-o
                     a(href="#" title="View all posts in Nature") 類別畜生
                 span.comments-link
                   i.fa.fa-comment-o
-                  a(href="#") 10 評論
+                  a(href="#") ${comment.length} 評論
               .content-text
                 p ${content}...
             .content-footer.clearfix

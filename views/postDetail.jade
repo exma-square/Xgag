@@ -12,7 +12,7 @@ block content
                 .row
                   article.content-post.post(id="#{posts._id}")
                     a.post-thumbnail(href="#" aria-hidden="true")
-                      img(width="700" height="396" src="#{posts.image}" class="attachment-lg " alt="")
+                      img(style='width:700px;height:396px' src="#{posts.image}" class="attachment-lg " alt="")
                     .content-body
                       p.label-wrap
                         span.label.label-part.label-sticky
@@ -34,14 +34,14 @@ block content
                         span.byline
                           i.fa.fa-pencil
                           span.author.vcard
-                          span.screen-reader-text 作者
-                            a.url.fn.n(href="#") 李宗瑞
+                          span.screen-reader-text 作者:
+                            a.url.fn.n(href="#") #{posts.name}
                         span.cat-links
                           i.fa.fa-folder-o
                             a(href="#" title="View all posts in Nature") 類別畜生
                         span.comments-link
                           i.fa.fa-comment-o
-                          a(href="#") 10 評論
+                          a(href="#") #{posts.comment} 評論
                       .content-text
                         p #{posts.content}...
                     .content-footer.clearfix
@@ -68,13 +68,26 @@ block content
                           a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/#{posts._id}" title="Dislike")
                             i.fa.fa-thumbs-o-down
                             span.dislike #{posts.dislike.length}
+                    .comment-box
+                      .comment-area
+                      .comment-body
+                        hr
+                        form(action="/comment/add/#{posts._id}" role="form")
+                          .form-group
+                            input(type="text" class="form-control" name="comment" placeholder="評論..." value="")
 
 
 
       .col-md-4(style="margin-top: 80px;")
         include common/sidebar
 
+  include common/commentTemplate
+
 block js
+  script(type='text/javascript').
+    $(function(){
+      getCommentsAjax('#{posts._id}');
+    })
   //- script(type='text/javascript').
   //-   $(function(){
   //-     getPost('55861e1e8bd4804e5e6df1ce');
