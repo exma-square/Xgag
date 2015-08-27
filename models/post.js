@@ -8,6 +8,7 @@ var postSchema = mongoose.Schema({
     title       : String,
     newsTitle   : String,
     image       : String,
+    tag         : String,
     create_date : Date,
     content     : String,
     url         : String,
