@@ -6,12 +6,14 @@ block content
     .row
       .col-md-8.post-clump
         if posts
+          div
+            span=console.dir(posts)
           #site-body
             #xgag-content.clearfix(style="padding-top:80px")
               #content-column
                 .row
                   article.content-post.post(id="#{posts._id}")
-                    a.post-thumbnail(href="#" aria-hidden="true")
+                    a.post-thumbnail(href="#{posts.url}" aria-hidden="true")
                       img(style='width:700px;height:396px' src="#{posts.image}" class="attachment-lg " alt="")
                     .content-body
                       p.label-wrap
@@ -29,8 +31,8 @@ block content
                           span.screen-reader-text
                             | Posted on
                             a(href="#" rel="bookmark")
-                              time.entry-date.published(datetime="") 2015/7/13
-                              time.updated(datetime="") 2015/7/14
+                              time.entry-date.published(datetime="") #{posts.create_date}
+                              //- time.updated(datetime="") 2015/7/14
                         span.byline
                           i.fa.fa-pencil
                           span.author.vcard
@@ -38,7 +40,7 @@ block content
                             a.url.fn.n(href="#") #{posts.name}
                         span.cat-links
                           i.fa.fa-folder-o
-                            a(href="#" title="View all posts in Nature") 類別畜生
+                            a(href="#" title="View all posts in Nature") #{posts.tag}
                         span.comments-link
                           i.fa.fa-comment-o
                           a(href="#") #{posts.comment.length} 評論

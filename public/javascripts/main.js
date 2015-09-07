@@ -37,6 +37,10 @@ $(function(){
             message: function() {
               $("#contentTmplComment").tmpl(this.data.messages).appendTo(".aaa");
               return true;
+            },
+            formatDate: function(){
+              date = this.data.create_date;
+              return moment(date).format('YYYY-MM-DD HH:mm');
             }
         }).appendTo(".post-clump");
       $('.comment-btn').on('click', function(){
