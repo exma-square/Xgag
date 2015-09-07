@@ -20,18 +20,18 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                 span.posted-on
                   i.fa.fa-calendar-o
                   span.screen-reader-text
-                    | Posted on
+                    | 發表於：
                     a(href="#" rel="bookmark")
                       time.entry-date.published(datetime="") ${$item.formatDate()}
                       //- time.updated(datetime="") 2015/7/14
                 span.byline
                   i.fa.fa-pencil
                   span.author.vcard
-                  span.screen-reader-text 作者
+                  span.screen-reader-text 作者:
                     a.url.fn.n(href="#") ${name}
                 span.cat-links
                   i.fa.fa-folder-o
-                    a(href="#" title="View all posts in Nature") ${tag}
+                  a(href="#" title="View all posts in Nature") 類別: ${tag}
                 span.comments-link
                   i.fa.fa-comment-o
                   a(href="#") ${comment.length} 評論

@@ -29,7 +29,7 @@ block content
                         span.posted-on
                           i.fa.fa-calendar-o
                           span.screen-reader-text
-                            | Posted on
+                            | 發表於：
                             a(href="#" rel="bookmark")
                               time.entry-date.published(datetime="") #{posts.create_date}
                               //- time.updated(datetime="") 2015/7/14
@@ -40,7 +40,7 @@ block content
                             a.url.fn.n(href="#") #{posts.name}
                         span.cat-links
                           i.fa.fa-folder-o
-                            a(href="#" title="View all posts in Nature") #{posts.tag}
+                          a(href="#" title="View all posts in Nature") 類別: #{posts.tag}
                         span.comments-link
                           i.fa.fa-comment-o
                           a(href="#") #{posts.comment.length} 評論
@@ -90,7 +90,3 @@ block js
     $(function(){
       getCommentsAjax('#{posts._id}');
     })
-  //- script(type='text/javascript').
-  //-   $(function(){
-  //-     getPost('55861e1e8bd4804e5e6df1ce');
-  //-   })
