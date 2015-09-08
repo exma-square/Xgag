@@ -25,24 +25,7 @@ $(function(){
 
   getPostsAjax = function(){
     $.get( "/getPosts", function( data ) {
-      $("#contentTmpl").tmpl(data.posts,{
-            myValue: "somevalue",
-            count: function() {
-              data = this.data.messages
-              console.log(this.data.messages)
-              if(data)
-                return Object.keys(data).length;
-              return 0;
-            },
-            message: function() {
-              $("#contentTmplComment").tmpl(this.data.messages).appendTo(".aaa");
-              return true;
-            },
-            formatDate: function(){
-              date = this.data.create_date;
-              return moment(date).format('YYYY/MM/DD HH:mm');
-            }
-        }).appendTo(".post-clump");
+      $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
       });
@@ -54,12 +37,7 @@ $(function(){
 
   getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
-      $("#commentTmpl").tmpl(data.result, {
-        formatDate: function(){
-          date = this.data.create_date;
-          return moment(date).format('YYYY-MM-DD HH:mm');
-        }
-      }).appendTo(".comment-area");
+      $("#commentTmpl").tmpl(data.result).appendTo(".comment-area");
     })
 
   }
