@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 var objectIdSelect = mongoose.Types.ObjectId;
 
 module.exports = {
@@ -45,6 +46,7 @@ module.exports = {
       post = JSON.parse(JSON.stringify(post));
       console.log(post, 111);
       post.percent = countPercent(post);
+      post.create_date = moment(post.create_date).format('YYYY-MM-DD HH:mm');
       return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0 });
     });
   },
