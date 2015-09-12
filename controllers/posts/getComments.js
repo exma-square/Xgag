@@ -10,10 +10,13 @@ module.exports = function (req, res){
     post = JSON.parse(JSON.stringify(post));
     models.comment.find({
       '_id': { $in: post.comment}
-    }, function(err, result){
+    })
+    .populate('user.user' , 'id' , null)
+    .exec(function(err, comment){
+      console.log(comment);
       if (err)
         return res.json({ code: 500, message: "id is not found" });
-      return res.json({result: result});
+      return res.json({comment: comment});
     });
   });
 };

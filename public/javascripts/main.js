@@ -37,7 +37,8 @@ $(function(){
 
   getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
-      $("#commentTmpl").tmpl(data.result).appendTo(".comment-area");
+      console.log(data);
+      $("#commentTmpl").tmpl(data.comment).appendTo(".comment-area");
     })
 
   }
