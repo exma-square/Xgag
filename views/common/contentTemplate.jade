@@ -22,7 +22,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   span.screen-reader-text
                     | 發表於：
                     a(href="#" rel="bookmark")
-                      time.entry-date.published(datetime="") ${$item.formatDate()}
+                      time.entry-date.published(datetime="") ${moment(create_date).format('YYYY/MM/DD HH:mm')}
                       //- time.updated(datetime="") 2015/7/14
                 span.byline
                   i.fa.fa-pencil

@@ -44,7 +44,6 @@ module.exports = {
       if (err)
         return res.json({ code: 500, message: "id is not found" });
       post = JSON.parse(JSON.stringify(post));
-      console.log(post, 111);
       post.percent = countPercent(post);
       post.create_date = moment(post.create_date).format('YYYY-MM-DD HH:mm');
       return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0 });
@@ -53,9 +52,10 @@ module.exports = {
   addcomment: function(req, res){
     var date = new Date();
     var id = req.params["id"].replace(/id=/g, "");
+    console.log(req.session.user);
     var newComment = new models.comment;
 
-    newComment.name = req.session.user.name;
+    newComment.user = req.session.user.id;
     newComment.create_date = date;
     newComment.message = req.query["comment"];
     if ( ! req.session.user) {

@@ -31,7 +31,7 @@ block content
                           span.screen-reader-text
                             | 發表於：
                             a(href="#" rel="bookmark")
-                              time.entry-date.published(datetime="") #{posts.create_date}
+                              time.entry-date.published(datetime="") #{moment(posts.create_date).format('YYYY/MM/DD HH:mm')}
                               //- time.updated(datetime="") 2015/7/14
                         span.byline
                           i.fa.fa-pencil
@@ -73,7 +73,6 @@ block content
                     .comment-box
                       .comment-area
                       .comment-body
-                        hr
                         form(action="/comment/add/#{posts._id}" role="form")
                           .form-group
                             input(type="text" class="form-control" name="comment" placeholder="評論..." value="")

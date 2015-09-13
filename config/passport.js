@@ -43,11 +43,12 @@ module.exports = function(passport) {
                     // if the user isnt in our database, create a new user
                     var newUser          = new User();
                     // set all of the relevant information
-                    newUser.google.id    = profile.id;
-                    newUser.google.token = token;
-                    newUser.google.name  = profile.displayName;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
-
+                    newUser.user.id    = profile.id;
+                    newUser.user.platform = "google";
+                    newUser.user.token = token;
+                    newUser.user.name  = profile.displayName;
+                    newUser.user.email = profile.emails[0].value; // pull the first email
+                    newUser.user.img   = profile.photos[0].value;
                     // save the user
                     newUser.save(function(err) {
                         if (err)
@@ -69,7 +70,7 @@ module.exports = function(passport) {
         clientID        : config.facebookAuth.clientID,
         clientSecret    : config.facebookAuth.clientSecret,
         callbackURL     : config.facebookAuth.callbackURL,
-        profileFields   : ['id', 'displayName' , 'emails']
+        profileFields   : ['id', 'displayName' , 'emails' , 'picture']
 
     },
 
@@ -93,13 +94,13 @@ module.exports = function(passport) {
                 } else {
                     // if there is no user found with that facebook id, create them
                     var newUser            = new User();
-
                     // set all of the facebook information in our user model
-                    newUser.facebook.id    = profile.id; // set the users facebook id
-                    newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                    newUser.facebook.name  = profile.displayName; // look at the passport user profile to see how names are returned
-                    newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-
+                    newUser.user.id    = profile.id; // set the users facebook id
+                    newUser.user.platform = "facebook";
+                    newUser.user.token = token; // we will save the token that facebook provides to the user
+                    newUser.user.name  = profile.displayName; // look at the passport user profile to see how names are returned
+                    newUser.user.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                    newUser.user.img   = profile.photos[0].value;
                     // save our user to the database
                     newUser.save(function(err) {
                         if (err)
