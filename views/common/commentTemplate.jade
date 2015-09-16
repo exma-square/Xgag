@@ -2,6 +2,7 @@ script#commentTmpl(type="text/x-jquery-tmpl")
   div
     ul
       - console.dir(comment)
-      p.name ${name}
+      - console.dir(user)
+      p.name ${user.name}
       p.message ${message}
       p.date ${moment(create_date).format('YYYY/MM/DD HH:mm')}
