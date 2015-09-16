@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var objectIdSelect = mongoose.Types.ObjectId;
+var async = require('async');
 
 module.exports = function (req, res){
   var id = req.params["id"].replace(/id=/g, "");
@@ -10,20 +11,27 @@ module.exports = function (req, res){
       return res.json({ code: 500, message: "id is not found" });
     post = JSON.parse(JSON.stringify(post));
     console.log("Post:" , post);
-    users = post.comment.map(function(obj){
-      return obj.user;
-    });
-    console.log(users);
-    for(user in users){
-      models.user.findOne({'user.id':users[user]})
-      .exec(function(err,user_info){
-        console.log(user_info.user);
+    async.eachSeries(post.comment, function iterator(comment, callback) {
+      console.log(comment);
+      models.user.findOne({"user.id":comment.user})
+      .exec(function(err, user){
+         comment.user = user;
+         callback();
       });
-    }
+    },function(){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
-    // models.user.find({id: post.comment})
-      return res.json({comment: post.comment , user: user});
+      // models.user.find({id: post.comment})
+      return res.json({comment: post.comment});
+    });
+    // post.comment.forEach(function(comment,key){
+    //   models.user.findOne({"user.id":comment.user})
+    //   .exec(function(err, user){
+    //     post.comment[key].user = user;
+    //     console.log(comment,key);
+    //   });
+    // });
+
 
   });
 };
