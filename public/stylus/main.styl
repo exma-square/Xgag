@@ -80,26 +80,34 @@ body {
 .comment-box{
   padding: 15px 2% 0 2%;
   border-top: 1px solid #ddd;
+  .comment-area{
+    display: table;
+    padding: 10px;
+    .comment-body{
+    display:table-row;
+    border: 2px solid #f0f0f0 ;
+    margin-bottom: 15px;
+    border-radius: 25px;
+      img{
+        display: table-cell;
+      }
+      .message{
+        display: table-cell;
+        text-align: left;
+        padding: 20px;
+        width: 80%;
+        font-size: 18px;
+      }
+      .date{
+        display: table-cell;
+        font-size:12px;
+      }
+    }
+  }
   .form-group {
     margin-bottom: 0px;
   }
-  .comment-body{
-    .name{
-      float: left;
-      font-size: 16px;
-    }
-    .date{
-      float: right;
-    }
-    .message{
-      text-align: left;
-      font-size: 14px;
-    }
-    hr{
-      border-color: #888;
-      margin: 10px 0;
-    }
-  }
+
 }
 .motion{
   background-image: none;
