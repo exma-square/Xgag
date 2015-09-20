@@ -1,7 +1,5 @@
 script#commentTmpl(type="text/x-jquery-tmpl")
-  div
-    ul
-      - console.dir(comment)
-      p.name ${name}
-      p.message ${message}
-      p.date ${moment(create_date).format('YYYY/MM/DD HH:mm')}
+  .comment-body
+    img(src='${user.user.img}')
+    p.message ${message}
+    p.date ${moment(create_date).format('MM/DD HH:mm')}
