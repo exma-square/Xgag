@@ -10,6 +10,7 @@ var postSchema = mongoose.Schema({
     image       : String,
     tag         : String,
     create_date : Date,
+    keywords    : String,
     content     : String,
     url         : String,
     site_name   : String,
