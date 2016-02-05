@@ -11,7 +11,9 @@ module.exports = function (req, res){
       var $ = cheerio.load(html);
       var time = $(".news-time").text();
       var content = $(".story");
-      var newspic = content.find('img').attr('src')
+      var newspic = content.find('img').attr('src');
+      var keywords = $('meta[name="keywords"]').attr('content');
+      console.log(keywords);
       newsINFO.push({
         title: $('meta[property="og:title"]').attr('content'),
         newspic: $('meta[property="og:image"]').attr('content'),

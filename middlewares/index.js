@@ -27,9 +27,8 @@ module.exports = function(app) {
   app.use(passport.session());
   app.use(flash());
   app.use(stylus.middleware({
-    src: __dirname + '/public/stylus',       // .styl files are located in `views/stylesheets`
-    dest: __dirname + '/public/stylesheets', // .styl resources are compiled `/stylesheets/*.css`
-
+    src: __dirname + '/../public/stylus',       // .styl files are located in `views/stylus`
+    dest: __dirname + '/../public/stylesheets', // .styl resources are compiled `/stylesheets/*.css`
     compile : function(str, path) {
       return stylus(str).set('filename', path).set('compress', true).use(nib());
     }

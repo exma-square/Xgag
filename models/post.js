@@ -10,13 +10,14 @@ var postSchema = mongoose.Schema({
     image       : String,
     tag         : String,
     create_date : Date,
+    keywords    : String,
     content     : String,
     url         : String,
     site_name   : String,
     like        : Array,
     dislike     : Array,
     percent     : String,
-    comment     : Array
+    comment     : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 });
 
 // create the model for users and expose it to our app

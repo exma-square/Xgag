@@ -42,6 +42,7 @@ module.exports = function (req, res){
           newsINFO.newsTitle = $('meta[property="og:title"]').attr('content');
           newsINFO.image = $('meta[property="og:image"]').attr('content');
           newsINFO.create_date = date;
+          newsINFO.keywords = $('meta[name="keywords"]').attr('content');
           newsINFO.content = content;
           newsINFO.url = $('meta[property="og:url"]').attr('content');
           newsINFO.site_name = $('meta[property="og:site_name"]').attr('content');

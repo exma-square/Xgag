@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var commentSchema = mongoose.Schema({
-    name        : String,
+    user        : [{ type: String, ref: 'User' }],
     create_date : Date,
     message     : String
 });
