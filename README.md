@@ -8,6 +8,7 @@ Express.js starter, collection for most usage library.
  * npm
  * [mongojs](https://github.com/mafintosh/mongojs)
  * [express@4.11.1rc](http://github.com/strongloop/express/)
+ * npm install -g bower
 
 ## how to start
 
