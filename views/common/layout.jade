@@ -4,8 +4,18 @@ html(lang='en', mode='normal')
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description', content='Xgag')
+    meta(name='description', content='Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。')
+    meta(name='keywords' , content='xgag, fun, funny, lol ,wtf ,news, 新聞, 有趣, 好玩, 歡呼, 花惹發')
+    meta(itemprop="image" content="http://xgag.cc/images/xgaglogo.png")
     meta(name='author', content='exma')
+    meta(itemprop="name" content="xgag")
+    meta(itemprop="image" content="http://xgag.cc/images/xgaglogo.png")
+    meta(itemprop="description" content="Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。")
+
+    meta(property="og:title" content="xgag")
+    meta(property="og:url" content="xgag.cc")
+    meta(property="og:image" content="http://xgag.cc/images/xgaglogo.png")
+    meta(property="og:description" content="Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。")
     title= title
     //- Bootstrap Core CSS
     link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css')
@@ -53,6 +63,22 @@ html(lang='en', mode='normal')
               .form-group.form-group-lg
                 label.control-label(for='user-post-title') Title :
                 input.form-control#user-post-title(type='text' name='user-post-title')
+              .form-group.form-group-lg
+                label.control-label(for='user-post-tag') Class :
+                select.form-control#user-post-tag(name = 'user-post-tag')
+                  option(value = "要聞") 要聞
+                  option(value = "娛樂") 娛樂
+                  option(value = "運動") 運動
+                  option(value = "全球") 全球
+                  option(value = "社會") 社會
+                  option(value = "產經") 產經
+                  option(value = "股市") 股市
+                  option(value = "健康") 健康
+                  option(value = "正妹") 正妹
+                  option(value = "科技") 科技
+                  option(value = "動漫") 動漫
+                  option(value = "旅遊") 旅遊
+                  option(value = "購物") 購物
               .form-group
                 label.control-label(for='user-post-description') Description :
                 textarea.form-control#user-post-description(rows="6" name='user-post-description')

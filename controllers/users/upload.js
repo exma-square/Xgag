@@ -10,13 +10,13 @@ var cheerio = require("cheerio");
 
 module.exports = function (req, res){
   var date = new Date();
-  
+
   async.waterfall([
 
     function getUrl(cb){
       var newsINFO = new models.post,
         newsURL = req.body['user-post-url'];
-        
+
       request({
         url: newsURL
       },
@@ -38,9 +38,11 @@ module.exports = function (req, res){
           };*/
           newsINFO.name = req.session.user.name;
           newsINFO.title = postTitle;
+          newsINFO.tag = req.body['user-post-tag'];
           newsINFO.newsTitle = $('meta[property="og:title"]').attr('content');
           newsINFO.image = $('meta[property="og:image"]').attr('content');
           newsINFO.create_date = date;
+          newsINFO.keywords = $('meta[name="keywords"]').attr('content');
           newsINFO.content = content;
           newsINFO.url = $('meta[property="og:url"]').attr('content');
           newsINFO.site_name = $('meta[property="og:site_name"]').attr('content');

@@ -1,5 +1,13 @@
 $(function(){
 
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.4";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
   var likeHandler = function (type, target) {
       // progress-dislike
       var likeNode = target.find(".like");
@@ -25,20 +33,7 @@ $(function(){
 
   getPostsAjax = function(){
     $.get( "/getPosts", function( data ) {
-      $("#contentTmpl").tmpl(data.posts,{
-            myValue: "somevalue",
-            count: function() {
-              data = this.data.messages
-              console.log(this.data.messages)
-              if(data)
-                return Object.keys(data).length;
-              return 0;
-            },
-            message: function() {
-              $("#contentTmplComment").tmpl(this.data.messages).appendTo(".aaa");
-              return true;
-            }
-        }).appendTo(".post-clump");
+      $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
       });
@@ -50,12 +45,8 @@ $(function(){
 
   getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
-      $("#commentTmpl").tmpl(data.result, {
-        formatDate: function(){
-          date = this.data.create_date;
-          return moment(date).format('YYYY-MM-DD HH:mm');
-        }
-      }).appendTo(".comment-area");
+      console.log(data);
+      $("#commentTmpl").tmpl(data.comment).appendTo(".comment-area");
     })
 
   }
@@ -92,6 +83,4 @@ $(function(){
     })
 
   });
-
-
 });

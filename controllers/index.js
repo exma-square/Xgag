@@ -24,23 +24,20 @@ module.exports = function(app , passport) {
    */
   app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
   app.get('/auth/google/callback',passport.authenticate('google', {
-    successRedirect : '/log-success-google',
+    successRedirect : '/log-success',
     failureRedirect : '/'
   }));
-  app.get('/log-success-google'     ,isLoggedIn,function(req, res){
-    req.session.user = req.user.google;
-    res.redirect('/');
-  });
   /*
    *facebook
    */
   app.get('/auth/facebook', passport.authenticate('facebook', { scope :'email' }));
   app.get('/auth/facebook/callback',passport.authenticate('facebook', {
-    successRedirect : '/log-success-facebook',
+    successRedirect : '/log-success',
     failureRedirect : '/'
   }));
-  app.get('/log-success-facebook'     ,isLoggedIn,function(req, res){
-    req.session.user = req.user.facebook;
+  app.get('/log-success'     ,isLoggedIn,function(req, res){
+    console.log(req.user);
+    req.session.user = req.user.user;
     res.redirect('/');
   });
 

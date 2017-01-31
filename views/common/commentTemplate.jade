@@ -1,4 +1,8 @@
 script#commentTmpl(type="text/x-jquery-tmpl")
-  div
-    ul
-      li ${name} ${message} ${$item.formatDate()}
+  .comment-body
+    img.pull-left(src='${user.user.img}')
+    .message
+      p.name ${user.user.name}
+      p ${message}
+      p.date.text-right ${moment(create_date).format('MM/DD HH:mm')}
+    .clearfix
