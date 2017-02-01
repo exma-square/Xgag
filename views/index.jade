@@ -7,9 +7,9 @@ block content
 
       .col-md-4(style="margin-top: 80px;")
         include common/sidebar
-
+  include common/commentTemplate
 block js
   script(type='text/javascript').
     $(function(){
-      getPostsAjax();
+      getPostsAjax();      
     });

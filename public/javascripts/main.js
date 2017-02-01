@@ -34,6 +34,9 @@ $(function(){
   getPostsAjax = function(){
     $.get( "/getPosts", function( data ) {
       $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
+      for (var key in data.posts){
+        getCommentsAjax(data.posts[key]._id);
+      }
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
       });
