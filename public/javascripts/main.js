@@ -33,7 +33,10 @@ $(function(){
 
   getPostsAjax = function(){
     $.get( "/getPosts", function( data ) {
-      $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
+      for (var key in data.posts){
+        $("#contentTmpl").tmpl(data.posts[key]).appendTo(".post-clump");
+        getCommentsAjax(data.posts[key]._id);
+      }
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
       });
@@ -46,7 +49,7 @@ $(function(){
   getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
       console.log(data);
-      $("#commentTmpl").tmpl(data.comment).appendTo(".comment-area");
+      $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId);
     })
 
   }
