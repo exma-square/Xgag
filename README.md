@@ -8,7 +8,6 @@ Express.js starter, collection for most usage library.
  * npm
  * [mongojs](https://github.com/mafintosh/mongojs)
  * [express@4.11.1rc](http://github.com/strongloop/express/)
- * npm install -g bower
 
 ## loca env setup
 
@@ -27,7 +26,7 @@ server {
     location / {
       proxy_set_header Host      $host;
       proxy_set_header X-Real-IP $remote_addr;
-      proxy_pass http://127.0.0.1:1337;
+      proxy_pass http://127.0.0.1:7000;
     }
 }
 ```
@@ -79,4 +78,3 @@ comment:{
   message:
 }
 ```
-## 大家安安
