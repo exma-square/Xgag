@@ -49,7 +49,7 @@ $(function(){
   getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
       console.log(data);
-      $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId);
+      $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId+" > div.comment-box > div.comment-area");
     })
 
   }
