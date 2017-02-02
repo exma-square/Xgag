@@ -18,10 +18,12 @@ $(function(){
         like = parseInt(likeNode.html(), 10) + 1;
         dislike = parseInt(dislikeNode.html(), 10);
         likeNode.html(like);
+        target.find("input").css("background-color","#ACD6FF");
       } else {
         like = parseInt(likeNode.html(), 10);
         dislike = parseInt(dislikeNode.html(), 10) + 1;
         dislikeNode.html(dislike);
+        target.find("input").css("background-color","#FFB5B5");
       }
 
       total = dislike + like;
@@ -50,8 +52,7 @@ $(function(){
     $.get("/getComments/" + postId , function(data){
       console.log(data);
       $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId+" > div.comment-box > div.comment-area");
-    })
-
+    });
   }
 
   $("#user-post-url").focusout(function(){
