@@ -25,13 +25,13 @@ module.exports = {
 
     var id = req.params["id"];
 
-    // if ( ! req.session.user) {
-    //   var error = {
-    //     code: 300,
-    //     message: "please login"
-    //   }
-    //   return res.render('index.jade', { title: 'Xgag', error: error});
-    // }
+    if ( ! req.session.user) {
+      var error = {
+        code: 300,
+        message: "please login"
+      }
+      return res.render('index.jade', { title: 'Xgag', error: error});
+    }
 
     if (! id) {
       return res.json({
