@@ -10,20 +10,20 @@ $(function(){
 
   var likeHandler = function (type, target) {
       // progress-dislike
-      var likeNode = target.find(".like");
-      var dislikeNode = target.find(".dislike");
+      var likeNode = target.find(".post-vote .like");
+      var dislikeNode = target.find(".post-vote .dislike");
       var like, dislike, total;
 
       if (type === "like") {
         like = parseInt(likeNode.html(), 10) + 1;
         dislike = parseInt(dislikeNode.html(), 10);
         likeNode.html(like);
-        target.find("input[name='status']").val("skyblue");
+        target.find("input[name='status']").val("like").parent().removeClass("like dislike").addClass("like");
       } else {
         like = parseInt(likeNode.html(), 10);
         dislike = parseInt(dislikeNode.html(), 10) + 1;
         dislikeNode.html(dislike);
-        target.find("input[name='status']").val("#FFCBB3");
+        target.find("input[name='status']").val("dislike").parent().removeClass("like dislike").addClass("dislike");
       }
 
       total = dislike + like;
@@ -170,6 +170,30 @@ $(function(){
       var string = "<h3 class='preview-title'>${title}</h3><p>${content}</p><img class='img-rounded' style='width:100%' src='${newspic}'/>";
       $("#news-prewiew").html($.tmpl( string, data ));
     });
+  });
+
+  // detail comment function
+  $(".comment-form").on('submit', function(e) {
+    e.preventDefault();
+
+    var node = $(e.target);
+    var url = node.attr('action');
+    var message = node.find('input[name=comment]').val();
+    var status = node.find('input[name=status]').val();
+    var postId = node.find('input[name=post_id]').val();
+    
+    if (message.length < 1)
+      return alert('請至少輸入些字吧，大哥～');
+    
+    $.post(url, {
+      message: message,
+      status: status
+    }, function (result) {
+      // clean input
+      node.find('input[name=comment]').val('');
+      $("#"+postId+" > div.comment-box > div.comment-area").text('');
+      getCommentsAjax(postId);
+    })
   });
 
   $(".container" ).delegate(".motion", "click", function(e) {

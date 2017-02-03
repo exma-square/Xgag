@@ -73,10 +73,11 @@ block content
                     .comment-box
                       .comment-area
                       .comment-body
-                        form(action="/comment/add/#{posts._id}" role="form")
+                        form.comment-form(action="/comment/add/#{posts._id}" role="form")
                           .form-group
                             input(type="text" class="form-control" name="comment" placeholder="評論..." value="")
                             input(type="hidden" name="status" value="")
+                            input(type="hidden" name="post_id" value="#{posts._id}")  
 
 
       .col-md-4(style="margin-top: 80px;")

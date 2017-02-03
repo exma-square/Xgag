@@ -84,6 +84,9 @@ body {
     width: 100%;
     .comment-body{
       margin-bottom: 15px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      
       .message{
         padding-left: 60px;
         font-size: 14px;
@@ -94,6 +97,9 @@ body {
       }
       .date{
         font-size:12px;
+      }
+      img {
+        border-radius: 50%;
       }
     }
   }
@@ -116,3 +122,20 @@ body {
 //   width: 300px;
 // }
 
+.comment-area {
+  .like {
+    background-color: rgba(62, 181, 216, 0.3);
+  }
+  .dislike {
+    background-color: rgba(208, 64, 60, 0.3); 
+  }
+}
+
+.comment-form {
+  .like {
+    border: 1px solid rgba(62, 181, 216, 1.0);
+  }
+  .dislike {
+    background-color: rgba(208, 64, 60, 1.0);
+  }
+}
