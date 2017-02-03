@@ -58,7 +58,7 @@ module.exports = {
     newComment.user = req.session.user.id;
     newComment.create_date = date;
     newComment.message = req.query["comment"];
-    if ( ! req.session.user) {
+    if ( ! req.session.user || typeof req.session.user==undefined) {
       return res.json({
         code: 300,
         message: "please login"
@@ -85,5 +85,4 @@ module.exports = {
       });
     });
   }
-
 };

@@ -22,8 +22,7 @@ module.exports = {
     models.post.update({_id: objectIdSelect(id)}, {$push: { like: req.session.user.id }}, function(err, post){
       if (err)
         return res.json({ code: 500, message: "id is not found" });
-
-      return res.json({code: 200, post: post});
+      return res.json({code: 200, post: post, color: "skyblue"});
     });
   },
 
@@ -46,7 +45,7 @@ module.exports = {
       if (err)
         return res.json({ code: 500, message: "id is not found" });
 
-      return res.json({code: 200, post: post});
+      return res.json({code: 200, post: post, color: "red"});
     });
   }
 };

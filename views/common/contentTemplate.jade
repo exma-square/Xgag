@@ -61,4 +61,9 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/${_id}" title="Dislike")
                     i.fa.fa-thumbs-o-down
                     span.dislike ${dislike.length}
-
+            .comment-box
+              .comment-area
+              .comment-body
+                form(action="/comment/add/${_id}" role="form")
+                  .form-group
+                    input(type="text" class="form-control" name="comment" placeholder="評論..." value="")
