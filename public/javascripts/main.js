@@ -33,8 +33,12 @@ $(function(){
       target.find(".progress-like").css({width: like + "%"});
   };
 
-  getPostsAjax = function(){
+  var getPostsAjax = function(){
     $.get( "/getPosts", function( data ) {
+      getTopLikePosts(data.posts);
+      getNewestPosts(data.posts);
+      getTopDislikePosts(data.posts);
+
       for (var key in data.posts){
         $("#contentTmpl").tmpl(data.posts[key]).appendTo(".post-clump");
         getCommentsAjax(data.posts[key]._id);
@@ -42,18 +46,123 @@ $(function(){
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
       });
-      $("img").error(function () {
+      $("img").on('error', function () {
         $(this).attr("src", "/images/error/error.png");
       });
     });
-  }
+  };
 
-  getCommentsAjax = function(postId){
+  window.getPostsAjax = getPostsAjax;
+
+  var getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
       console.log(data);
       $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId+" > div.comment-box > div.comment-area");
     });
-  }
+  };
+
+  window.getCommentsAjax = getCommentsAjax;
+
+  var getTopLikePosts = function(posts) {
+    var clonePosts = JSON.parse(JSON.stringify(posts));
+    posts.sort(function (currentVal, nextVal){
+      if (currentVal.like.length < nextVal.like.length) {
+        return 1;
+      } else if (currentVal.like.length > nextVal.like.length) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    var topLikePostsEl = $("#top-like-posts");
+    var topLikePostTotal = 0;
+    posts.forEach(function(post) {
+      if (topLikePostTotal > 6) {
+        return;
+      }
+
+      var tpl = "<article class='layout-list-item'>";
+      tpl += "<a href='/detailPost/" + post._id + "'>";
+      tpl += "<div class='post-image'>";
+      tpl += "<img class='attachment-thumbnail' width='150' height='150' src='' alt='' />";
+      tpl += "</div>";
+      tpl += "<div class='post-meta'>";
+      tpl += "<h4>" + post.title + "</h4>";
+      tpl += "<p class='post-date text-muted'>" + moment(post.create_date).format("YYYY/MM/DD") + "</p>";
+      tpl += "</div></a>";
+      tpl += "</article>";
+
+      topLikePostsEl.append(tpl);
+      topLikePostTotal += 1;
+    });
+  };
+
+  var getTopDislikePosts = function (posts){
+    var clonePosts = JSON.parse(JSON.stringify(posts));
+    posts.sort(function (currentVal, nextVal){
+      if (currentVal.dislike.length < nextVal.dislike.length) {
+        return 1;
+      } else if (currentVal.dislike.length > nextVal.dislike.length) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    var topDislikePostsEl = $("#menu-footer-menu");
+    var topDislikePostTotal = 0;
+
+    posts.forEach(function(post) {
+      if (topDislikePostTotal > 3) {
+        return;
+      }
+
+      var tpl = "<li class='menu-item-type-post_type menu-item-object-page'>";
+      tpl += "<a href='/detailPost/" + post._id + "'>";
+      tpl += post.title;
+      tpl += "</a></li>";
+
+      topDislikePostsEl.append(tpl);
+      topDislikePostTotal += 1;
+    });
+  };
+
+  var getNewestPosts = function (posts){
+    var clonePosts = JSON.parse(JSON.stringify(posts));
+    posts.sort(function (currentVal, nextVal){
+      if (currentVal.create_date < nextVal.create_date) {
+        return 1;
+      } else if (currentVal.create_date > nextVal.create_date) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    var newestPostsEl = $("#newest-posts");
+    var newestPostTotal = 0;
+    posts.forEach(function(post) {
+      if (newestPostTotal > 3) {
+        return;
+      }
+
+      var tpl = "<article class='layout-grid-item'>";
+      tpl += "<a href='/detailPost/" + post._id + "'>";
+      tpl += "<div class='post-image'>";
+      tpl += "<img class='attachment-md' width='150' height='150' src='' alt='' />";
+      tpl += "</div>";
+      tpl += "<div class='post-meta'>";
+      tpl += "<h4>" + post.content + "</h4>";
+      tpl += "<p class='post-date text-muted'>" + moment(post.create_date).format("YYYY/MM/DD") + "</p>";
+      tpl += "</div></a>";
+      tpl += "</article>";
+
+      newestPostsEl.append(tpl);
+      newestPostTotal += 1;
+    });
+    console.log('posts:: ', posts);
+  };
 
   $("#user-post-url").focusout(function(){
     var url = $(this).val();
@@ -84,7 +193,7 @@ $(function(){
       // actionTarget.html(parseInt(actionTarget.html(), 10) + 1);
 
       return;
-    })
+    });
 
   });
 });
