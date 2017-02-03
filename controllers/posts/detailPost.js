@@ -58,6 +58,7 @@ module.exports = {
     newComment.user = req.session.user.id;
     newComment.create_date = date;
     newComment.message = req.query["comment"];
+    newComment.status = req.query.status;
     if ( ! req.session.user || typeof req.session.user==undefined) {
       return res.json({
         code: 300,

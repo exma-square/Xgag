@@ -1,5 +1,5 @@
 script#commentTmpl(type="text/x-jquery-tmpl")
-  .comment-body
+  .comment-body(style='background-color:${status}')
     img.pull-left(src='${user.user.img}')
     .message
       p.name ${user.user.name}

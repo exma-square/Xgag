@@ -18,12 +18,12 @@ $(function(){
         like = parseInt(likeNode.html(), 10) + 1;
         dislike = parseInt(dislikeNode.html(), 10);
         likeNode.html(like);
-        target.find("input").css("background-color","#ACD6FF");
+        target.find("input[name='status']").val("skyblue");
       } else {
         like = parseInt(likeNode.html(), 10);
         dislike = parseInt(dislikeNode.html(), 10) + 1;
         dislikeNode.html(dislike);
-        target.find("input").css("background-color","#FFB5B5");
+        target.find("input[name='status']").val("#FFCBB3");
       }
 
       total = dislike + like;
