@@ -6,16 +6,22 @@ html(lang='en', mode='normal')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='description', content='Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。')
     meta(name='keywords' , content='xgag, fun, funny, lol ,wtf ,news, 新聞, 有趣, 好玩, 歡呼, 花惹發')
-    meta(itemprop="image" content="http://xgag.cc/images/xgaglogo.png")
+    meta(itemprop="image" content="http://xgag.me/images/xgaglogo.png")
     meta(name='author', content='exma')
     meta(itemprop="name" content="xgag")
-    meta(itemprop="image" content="http://xgag.cc/images/xgaglogo.png")
+    meta(itemprop="image" content="http://xgag.me/images/xgaglogo.png")
     meta(itemprop="description" content="Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。")
-
-    meta(property="og:title" content="#{posts.title}")
-    meta(property="og:url" content="xgag.me")
-    meta(property="og:image" content="http://xgag.me/"+"#{posts.image}")
-    meta(property="og:description" content="#{posts.content}")
+    
+    if title != 'post'
+      meta(property="og:title" content="Xgag")
+      meta(property="og:url" content="#{config.domain}")
+      meta(property="og:image" content="#{config.domain}images/xgaglogo.png")
+      meta(property="og:description" content="Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。")
+    else
+      meta(property="og:title" content="#{posts.title}")
+      meta(property="og:url" content="#{config.domain}detailPost/#{posts._id}")
+      meta(property="og:image" content="#{posts.image}")
+      meta(property="og:description" content="#{posts.content}")
     title= title
     //- Bootstrap Core CSS
     link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css')
