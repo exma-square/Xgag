@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
 var commentSchema = mongoose.Schema({
     user        : [{ type: String, ref: 'User' }],
     create_date : Date,
-    message     : String
+    message     : String,
+    status      : String
 });
 
 // create the model for users and expose it to our app
