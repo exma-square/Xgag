@@ -57,8 +57,8 @@ module.exports = {
 
     newComment.user = req.session.user.id;
     newComment.create_date = date;
-    newComment.message = req.query["comment"];
-    newComment.status = req.query.status;
+    newComment.message = req.body.message;
+    newComment.status = req.body.status;
     if ( ! req.session.user || typeof req.session.user==undefined) {
       return res.json({
         code: 300,
@@ -72,6 +72,7 @@ module.exports = {
         message: "id is not defined"
       });
     }
+
     newComment.save(function(err) {
       if (err){
         console.error(err);
@@ -82,7 +83,12 @@ module.exports = {
         function(err, post){
           if (err)
             return res.json({ code: 500, message: "id is not found" });
-          res.redirect('/detailPost/' + id);
+
+          return res.json({
+            code: 200,
+            message: "success",
+            data: newComment
+          });
       });
     });
   }
