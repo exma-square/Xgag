@@ -34,7 +34,7 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   a(href="#" title="View all posts in Nature") 類別: ${tag}
                 span.comments-link
                   i.fa.fa-comment-o
-                  a(href="#") ${comment.length} 評論
+                  a(href="/detailPost/${_id}") ${comment.length} 評論
               .content-text
                 p ${content}...
             .content-footer.clearfix
@@ -61,10 +61,6 @@ script#contentTmpl(type="text/x-jquery-tmpl")
                   a.btn.btn-default.post-vote.post-vote-down.motion(href="/dislike/add/${_id}" title="Dislike")
                     i.fa.fa-thumbs-o-down
                     span.dislike ${dislike.length}
-            .comment-box
-              .comment-area
-              .comment-body
-                form(action="/comment/add/${_id}" role="form")
-                  .form-group
-                    input(type="text" class="form-control" name="comment" placeholder="評論..." value="")
-                    input(type="hidden" name="status" value="")
+            .comment-number
+              i.fa.fa-comment-o
+              a(href="/detailPost/${_id}") 評論數量 : ${comment.length}

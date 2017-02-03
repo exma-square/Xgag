@@ -38,11 +38,7 @@ $(function(){
       getTopLikePosts(data.posts);
       getNewestPosts(data.posts);
       getTopDislikePosts(data.posts);
-
-      for (var key in data.posts){
-        $("#contentTmpl").tmpl(data.posts[key]).appendTo(".post-clump");
-        getCommentsAjax(data.posts[key]._id);
-      }
+      $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
       });
@@ -181,10 +177,10 @@ $(function(){
     var message = node.find('input[name=comment]').val();
     var status = node.find('input[name=status]').val();
     var postId = node.find('input[name=post_id]').val();
-    
+
     if (message.length < 1)
       return alert('請至少輸入些字吧，大哥～');
-    
+
     $.post(url, {
       message: message,
       status: status
