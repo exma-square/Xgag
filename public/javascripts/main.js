@@ -61,6 +61,8 @@ $(function(){
     });
   };
 
+  window.getCommentsAjax = getCommentsAjax;
+
   var getTopLikePosts = function(posts) {
     var clonePosts = JSON.parse(JSON.stringify(posts));
     posts.sort(function (currentVal, nextVal){
