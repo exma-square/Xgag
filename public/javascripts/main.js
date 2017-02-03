@@ -18,10 +18,12 @@ $(function(){
         like = parseInt(likeNode.html(), 10) + 1;
         dislike = parseInt(dislikeNode.html(), 10);
         likeNode.html(like);
+        target.find("input").css("background-color","#ACD6FF");
       } else {
         like = parseInt(likeNode.html(), 10);
         dislike = parseInt(dislikeNode.html(), 10) + 1;
         dislikeNode.html(dislike);
+        target.find("input").css("background-color","#FFB5B5");
       }
 
       total = dislike + like;
@@ -31,7 +33,7 @@ $(function(){
       target.find(".progress-like").css({width: like + "%"});
   };
 
-  getPostsAjax = function(){
+  var getPostsAjax = function(){
     $.get( "/getPosts", function( data ) {
       getTopLikePosts(data.posts);
       getNewestPosts(data.posts);
@@ -50,13 +52,14 @@ $(function(){
     });
   };
 
-  getCommentsAjax = function(postId){
+  var getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
-      $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId);
+      console.log(data);
+      $("#commentTmpl").tmpl(data.comment).appendTo("#"+postId+" > div.comment-box > div.comment-area");
     });
   };
 
-  getTopLikePosts = function(posts) {
+  var getTopLikePosts = function(posts) {
     var clonePosts = JSON.parse(JSON.stringify(posts));
     posts.sort(function (currentVal, nextVal){
       if (currentVal.like.length < nextVal.like.length) {
@@ -91,7 +94,7 @@ $(function(){
     });
   };
 
-  getTopDislikePosts = function (posts){
+  var getTopDislikePosts = function (posts){
     var clonePosts = JSON.parse(JSON.stringify(posts));
     posts.sort(function (currentVal, nextVal){
       if (currentVal.dislike.length < nextVal.dislike.length) {
@@ -121,7 +124,7 @@ $(function(){
     });
   };
 
-  getNewestPosts = function (posts){
+  var getNewestPosts = function (posts){
     var clonePosts = JSON.parse(JSON.stringify(posts));
     posts.sort(function (currentVal, nextVal){
       if (currentVal.create_date < nextVal.create_date) {
@@ -154,7 +157,7 @@ $(function(){
       newestPostsEl.append(tpl);
       newestPostTotal += 1;
     });
-    console.log('posts:: ', posts)
+    console.log('posts:: ', posts);
   };
 
   $("#user-post-url").focusout(function(){
