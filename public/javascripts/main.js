@@ -52,6 +52,8 @@ $(function(){
     });
   };
 
+  window.getPostsAjax = getPostsAjax;
+
   var getCommentsAjax = function(postId){
     $.get("/getComments/" + postId , function(data){
       console.log(data);
