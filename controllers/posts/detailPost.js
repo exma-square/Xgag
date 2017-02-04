@@ -46,7 +46,13 @@ module.exports = {
       post = JSON.parse(JSON.stringify(post));
       post.percent = countPercent(post);
       post.create_date = moment(post.create_date).format('YYYY-MM-DD HH:mm');
-      return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0 });
+      var fbMeta = {
+        title: post.title,
+        url: config.domain + "detailPost/" + post._id,
+        image: post.image,
+        description: post.content
+      };
+      return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0, fbMeta: fbMeta });
     });
   },
   addcomment: function(req, res){

@@ -38,6 +38,7 @@ $(function(){
       getTopLikePosts(data.posts);
       getNewestPosts(data.posts);
       getTopDislikePosts(data.posts);
+      // getFBMeta(data.posts.title);
       $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
@@ -158,6 +159,49 @@ $(function(){
       newestPostTotal += 1;
     });
     console.log('posts:: ', posts);
+  };
+
+  var getFBMeta = function (posts){
+
+    var FBMetaEl = $("head");
+    var newestPostTotal = 0;
+    var currentPathname = window.location.pathname;
+    var currentHref = window.location.href
+    var title = '';
+    var url = '';
+    var image = '';
+    var imageWidth = 200;
+    var imageHeight =200;
+    var content = '';
+
+    if(currentPathname == '/'){
+      title = "Xgag";
+      url = currentHref;
+      image = currentHref+"images/xgaglogo.png";
+      content = "Xgag 是台灣的一個新聞平台，提供各種有趣, 好玩, 歡呼, 花惹發等新聞內容互動體驗，提供使用者全面且豐富的閱讀感受，我們是 Xgag。"
+    }
+    else{
+      title = posts.title;
+      url = config.damain+"detailPost/"+posts._id;
+      image = posts.image;
+      content = posts.content;
+    }
+    if(currentPathname == '/'){
+    // <meta name="og:description" content="網站要呈現的敘述設定" />
+      var tpl = '';
+      tpl += `<meta property="og:title" content="${title}"/>`;
+      // tpl += "<meta property='og:type' content='website'/>";
+      tpl += `<meta property="og:url" content="${url}"/>`;
+      tpl += `<meta property='og:image' content="${image}"/>`;
+      tpl += `<meta property='og:image:width' content='${imageWidth}'/>`;
+      tpl += `<meta property='og:image:height' content='${imageHeight}'/>`;
+      tpl += `<meta property='og:description' content='${content}' />`;
+
+      FBMetaEl.append(tpl);
+    }
+
+    console.log(window.location);
+    // console.log('posts:: ', posts);
   };
 
   $("#user-post-url").focusout(function(){
