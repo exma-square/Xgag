@@ -46,20 +46,14 @@ module.exports = {
       post = JSON.parse(JSON.stringify(post));
       post.percent = countPercent(post);
       post.create_date = moment(post.create_date).format('YYYY-MM-DD HH:mm');
-      var changeMeta = {
-        fb: {
-          title: post.title,
-          url: config.domain + "detailPost/" + post._id,
-          image: post.image,
-          description: post.content
-        },
-        google: {
-          title: post.title,
-          image: post.image,
-          description: post.content
-        }
+      var responseMeta = {
+        url: config.domain + "detailPost/" + post._id,
+        image: post.image,
+        description: post.content,
+        keywords: "xgag, fun, funny, lol ,wtf ,news, 新聞, 有趣, 好玩, 歡呼, 花惹發",
+        author: "exma"
       };
-      return res.render('postDetail.jade', { title: 'post', user: req.session.user, posts: post || 0, changeMeta: changeMeta });
+      return res.render('postDetail.jade', { title: post.title, user: req.session.user, posts: post || 0, responseMeta: responseMeta });
     });
   },
   addcomment: function(req, res){
