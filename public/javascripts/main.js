@@ -38,6 +38,8 @@ $(function(){
       getTopLikePosts(data.posts);
       getNewestPosts(data.posts);
       getTopDislikePosts(data.posts);
+      getKeywords(data.keywords);
+
       $("#contentTmpl").tmpl(data.posts).appendTo(".post-clump");
       $('.comment-btn').on('click', function(){
         $(this).parent().parent().find('textarea').focus();
@@ -75,13 +77,13 @@ $(function(){
     var topLikePostTotal = 0;
     posts.forEach(function(post) {
       if (topLikePostTotal > 6) {
-        return;
+        return false;
       }
 
       var tpl = "<article class='layout-list-item'>";
       tpl += "<a href='/detailPost/" + post._id + "'>";
       tpl += "<div class='post-image'>";
-      tpl += "<img class='attachment-thumbnail' width='150' height='150' src='' alt='' />";
+      tpl += "<img class='attachment-thumbnail' width='150' height='150' src='" + (post.image || '') + "' alt='" + post.title + "' />";
       tpl += "</div>";
       tpl += "<div class='post-meta'>";
       tpl += "<h4>" + post.title + "</h4>";
@@ -111,7 +113,7 @@ $(function(){
 
     posts.forEach(function(post) {
       if (topDislikePostTotal > 3) {
-        return;
+        return false;
       }
 
       var tpl = "<li class='menu-item-type-post_type menu-item-object-page'>";
@@ -140,13 +142,13 @@ $(function(){
     var newestPostTotal = 0;
     posts.forEach(function(post) {
       if (newestPostTotal > 3) {
-        return;
+        return false;
       }
 
       var tpl = "<article class='layout-grid-item'>";
       tpl += "<a href='/detailPost/" + post._id + "'>";
       tpl += "<div class='post-image'>";
-      tpl += "<img class='attachment-md' width='150' height='150' src='' alt='' />";
+      tpl += "<img class='attachment-md' width='150' height='150' src='" + (post.image || '') + "' alt='" + post.title + "' />";
       tpl += "</div>";
       tpl += "<div class='post-meta'>";
       tpl += "<h4>" + post.content + "</h4>";
@@ -157,8 +159,24 @@ $(function(){
       newestPostsEl.append(tpl);
       newestPostTotal += 1;
     });
-    console.log('posts:: ', posts);
   };
+
+  getKeywords = function (keywords){
+    var keywordsEl = $("#instagram_widget > .widget-body > .instagram-images");
+    var keywordTotal = 0;
+
+    keywords.forEach(function (keyword){
+      if (keywordTotal > 13) {
+        return false;
+      }
+
+      var tpl = "<a class='instagram-link' href='" + keyword.url + "' title='" + keyword.title + " (" + keyword.keyword + ")'>";
+      tpl += "<img src='" + keyword.image + "' alt='" + keyword.title + "' />";
+      tpl += "</a>";
+      keywordsEl.append(tpl);
+      keywordTotal += 1;
+    });
+  }
 
   $("#user-post-url").focusout(function(){
     var url = $(this).val();
